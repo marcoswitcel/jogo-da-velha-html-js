@@ -1,0 +1,46 @@
+
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.root {
+    display: flex;
+    min-height: 100vh;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.grid__cell {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15vw;
+}
+
+.grid__cell:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.grid__cell:active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.is-visible {
+    display: block;
+}
+
+.is-hidden {
+    display: none;
+}
