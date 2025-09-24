@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Velha</title>
     <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <div id="app" class="app-container">
-        <div class="app-screen menu">
+    <template id="app-view-menu">
+        <div class="app-screen">
             <button id="btn-action-play" type="button">Jogar</button>
         </div>
-        <div class="app-screen in-game is-hidden">
+    </template>
+    <template id="app-view-in-game">
+        <div class="app-screen">
             <div class="grid">
                 <div class="grid__cell"></div>
                 <div class="grid__cell"></div>
@@ -24,6 +24,11 @@
                 <div class="grid__cell"></div>
             </div>
         </div>
+    </template>
+</head>
+<body>
+    <div id="app" class="app-container">
+        
     </div>
     <script type="module" src="../src/main.js"></script>
 </body>
