@@ -11,6 +11,11 @@ export class AppContext {
    */
   currentView = null;
 
+  /**
+   * @type {'O'|'X'}
+   */
+  player = 'O';
+
   constructor(rootElement) {
     this.rootElement = rootElement;
   }
@@ -20,11 +25,16 @@ export class AppContext {
    * @param {View} view 
    */
   attachElementsToContainer(view) {
+    this.rootElement.setAttribute('class', `app-container ${view.viewName}`);
     this.rootElement.innerHTML = ''; // @todo Otimizar isso aqui
     this.rootElement.appendChild(view.rootElement);
   }
 
   queueToChange(view) {
     this.queuedForEntering.push(view);
+  }
+
+  changePlayer() {
+    this.player = (this.player === 'O') ? 'X' : 'O';
   }
 }

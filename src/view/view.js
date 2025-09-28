@@ -24,4 +24,13 @@ export class View {
 
   setup() {}
   cleanup() {}
+
+  /**
+   * 
+   * @param {string} selector 
+   * @returns {HTMLElement[]}
+   */
+  query(selector) {
+    return Array.from(this.rootElement.querySelectorAll(selector));
+  }
 }
