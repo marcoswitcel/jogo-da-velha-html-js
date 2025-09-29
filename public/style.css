@@ -57,3 +57,14 @@ html, body {
     left: auto;
     right: 0;
 }
+
+.app-view-menu .app-screen {
+    text-align: center;
+}
+
+.app-view-menu .btn {
+    padding: 1em;
+    border: none;
+    color: white;
+    background-color: rgba(0,0,255,1);
+}
