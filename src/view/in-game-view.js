@@ -1,4 +1,6 @@
+import { TicTacToe } from '../tic-tac-toe.js';
 import { getById } from '../utils.js';
+import { MenuView } from './menu-view.js';
 import { View } from './view.js';
 
 export class InGameView extends View {
@@ -7,14 +9,12 @@ export class InGameView extends View {
    */
   playerMode;
 
-  /**
-   * @type {('-'|'O'|'X')[][]}
-   */
-  grid = [['-', '-', '-'],['-', '-', '-'],['-', '-', '-'],];
+  ticTacToe;
 
   constructor(ctx, playerMode) {
     super('app-view-in-game', getById('app-view-in-game'), ctx);
     this.playerMode = playerMode;
+    this.ticTacToe = new TicTacToe();
   }
 
   setup() {
@@ -29,16 +29,21 @@ export class InGameView extends View {
         console.assert(row >= 0 && row < 3);
         console.assert(col >= 0 && col < 3);
 
-        if (this.grid[row][col] != '-') return;
+        if (this.ticTacToe.grid[row][col] != '-') return;
 
-        this.grid[row][col] = this.ctx.player;
+        this.ticTacToe.grid[row][col] = this.ctx.player;
 
-        // @todo João, check victory
-
-        entry.innerText = this.ctx.player;
-        this.ctx.changePlayer();
-        playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
-        playerDisplay.dataset.turn = this.ctx.player;
+        if (this.ticTacToe.checkForWin()) {
+          setTimeout(() => {
+            confirm(`Vitória do jogador: ${this.ctx.player}`);
+            this.ctx.queueToChange(new MenuView(this.ctx));
+          }, 0);
+        } else {
+          entry.innerText = this.ctx.player;
+          this.ctx.changePlayer();
+          playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
+          playerDisplay.dataset.turn = this.ctx.player;
+        }
       });
     })
   }
