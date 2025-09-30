@@ -9,7 +9,10 @@ export class MenuView extends View {
 
   setup() {
     this.rootElement.querySelector('#btn-action-play').addEventListener('click', () => {
-      this.ctx.queueToChange(new InGameView(this.ctx));
+      this.ctx.queueToChange(new InGameView(this.ctx, 1));
+    });
+    this.rootElement.querySelector('#btn-action-play2').addEventListener('click', () => {
+      this.ctx.queueToChange(new InGameView(this.ctx, 2));
     });
   }
 }
