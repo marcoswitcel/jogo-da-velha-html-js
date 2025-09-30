@@ -4,6 +4,7 @@ html, body {
     padding: 0;
     margin: 0;
     font-family: serif;
+    user-select: none;
 }
 
 .root {
@@ -48,6 +49,11 @@ html, body {
     display: none;
 }
 
+.app-view-in-game .app-screen {
+    height: 100%;
+    display: flex;
+}
+
 .app-view-in-game .player-display {
     position: absolute;
     top: 0;
@@ -58,13 +64,38 @@ html, body {
     right: 0;
 }
 
+.app-container {
+    height: 100vh;
+}
+
 .app-view-menu .app-screen {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .app-view-menu .btn {
-    padding: 1em;
-    border: none;
+    padding: 1em 1.5em;
+    border: 2px solid transparent;
     color: white;
+    width: auto;
+    margin: .5em;
+    max-width: 200px;
     background-color: rgba(0,0,255,1);
+    outline: none;
+    user-select: none;
+    animation: all .3 ease-in-out;
+    border-radius: .9em;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: serif;
+}
+
+.app-view-menu .btn:hover, .app-view-menu .btn:focus, .app-view-menu .btn:active {
+    background-color: rgba(0,0,255,0.9);
+    border: 2px solid white;
+    transform: scale(1.1);
 }
