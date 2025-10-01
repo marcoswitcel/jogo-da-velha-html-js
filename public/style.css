@@ -24,7 +24,6 @@ html, body {
 .grid__cell {
     flex: 0 0 33.33%;
     max-width: 33.33%;
-    border: none;
     background-color: rgba(0, 0, 0, 0.05);
     aspect-ratio: 1/1;
     cursor: pointer;
@@ -32,6 +31,8 @@ html, body {
     text-align: center;
     vertical-align: middle;
     font-size: inherit;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .grid__cell:hover {
@@ -76,6 +77,11 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+.app-view-menu .title {
+    color: #333;
+    font-size: 4em;
 }
 
 .app-view-menu .btn {

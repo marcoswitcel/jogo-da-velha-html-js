@@ -35,8 +35,12 @@ export class InGameView extends View {
 
         if (this.ticTacToe.checkForWin()) {
           setTimeout(() => {
-            confirm(`Vitória do jogador: ${this.ctx.player}`);
-            this.ctx.queueToChange(new MenuView(this.ctx));
+            const result = confirm(`Vitória do jogador: ${this.ctx.player}. Deseja jogar novamente?`);
+            if (result) {
+              this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
+            } else {
+              this.ctx.queueToChange(new MenuView(this.ctx));
+            }
           }, 0);
         } else {
           entry.innerText = this.ctx.player;
