@@ -1,6 +1,7 @@
 import { getById } from '../utils.js';
 import { View } from './view.js';
 import { InGameView } from './in-game-view.js';
+import { ConfigView } from './config-view.js';
 
 export class MenuView extends View {
   constructor(ctx) {
@@ -13,6 +14,9 @@ export class MenuView extends View {
     });
     this.rootElement.querySelector('#btn-action-play2').addEventListener('click', () => {
       this.ctx.queueToChange(new InGameView(this.ctx, 2));
+    });
+    this.rootElement.querySelector('#btn-action-config').addEventListener('click', () => {
+      this.ctx.queueToChange(new ConfigView(this.ctx));
     });
   }
 }
