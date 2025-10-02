@@ -42,6 +42,16 @@ export class InGameView extends View {
               this.ctx.queueToChange(new MenuView(this.ctx));
             }
           }, 0);
+        } else if (this.ticTacToe.checkForATie()) {
+          entry.innerText = this.ctx.player;
+          setTimeout(() => {
+            const result = confirm(`Empate! Deseja jogar novamente?`);
+            if (result) {
+              this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
+            } else {
+              this.ctx.queueToChange(new MenuView(this.ctx));
+            }
+          }, 0);
         } else {
           entry.innerText = this.ctx.player;
           this.ctx.changePlayer();
