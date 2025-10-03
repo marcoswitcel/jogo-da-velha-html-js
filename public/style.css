@@ -15,10 +15,10 @@ html, body {
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 600px;
+    width: 75VW;
+    max-width: 500px;
     margin: auto;
-    font-size: min(calc(100vw / 4), calc(600px / 4));
+    font-size: min(calc(75VW / 4), calc(500px / 4));
 }
 
 .grid__cell {
