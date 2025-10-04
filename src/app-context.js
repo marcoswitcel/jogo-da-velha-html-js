@@ -16,8 +16,24 @@ export class AppContext {
    */
   player = 'O';
 
-  constructor(rootElement) {
+  /**
+   * @type {HTMLElement}
+   */
+  rootElement;
+
+  /**
+   * @type {HTMLElement}
+   */
+  rootModalElement;
+
+  /**
+   * 
+   * @param {HTMLElement} rootElement 
+   * @param {HTMLElement} rootModalElement 
+   */
+  constructor(rootElement, rootModalElement) {
     this.rootElement = rootElement;
+    this.rootModalElement = rootModalElement;
   }
 
   /**
@@ -36,5 +52,20 @@ export class AppContext {
 
   changePlayer() {
     this.player = (this.player === 'O') ? 'X' : 'O';
+  }
+
+  /**
+   * 
+   * @param {string} title 
+   * @param {string} description 
+   * @param {{ confirm: () => void, decline: () => void, }} param2 
+   */
+  confirm(title, description, { confirm, decline }) {
+    // @todo João, refatorar isso aqui "implantar" o html padrão de novo toda vez pra evitar ficar com estado quebrado
+    // @todo João, implementar callbacks e ajsutar layout
+
+    this.rootModalElement.classList.remove('app-modal__hidden');
+    this.rootModalElement.querySelector('.title').innerHTML = title;
+    this.rootModalElement.querySelector('.description').innerHTML = description;
   }
 }

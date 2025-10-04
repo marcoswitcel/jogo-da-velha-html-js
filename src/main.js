@@ -4,7 +4,7 @@ import { MenuView } from './view/menu-view.js';
 
 console.log('Olá mundo do "Jogo da Velha" em HTML');
 
-const context = new AppContext(getById('app'));
+const context = new AppContext(getById('app'), getById('app-modal'));
 
 context.queueToChange(new MenuView(context));
 

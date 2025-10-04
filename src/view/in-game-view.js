@@ -33,6 +33,18 @@ export class InGameView extends View {
 
         this.ticTacToe.grid[row][col] = this.ctx.player;
 
+        // @todo João, terminar o modal de confirmação padrão e depois disso generalizar para suportar diversos tipos de modal
+        /*  
+        this.ctx.confirm('título 2', 'ahhhhhh', {
+          confirm: () => {
+            
+          },
+          decline: () => {
+            
+          },
+        })
+        */
+
         if (this.ticTacToe.checkForWin()) {
           setTimeout(() => {
             const result = confirm(`Vitória do jogador: ${this.ctx.player}. Deseja jogar novamente?`);

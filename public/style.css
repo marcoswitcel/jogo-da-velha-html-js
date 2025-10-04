@@ -106,3 +106,33 @@ html, body {
     border: 2px solid white;
     transform: scale(1.1);
 }
+
+.app-modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.app-modal:active {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.app-modal .confirm-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.app-modal__hidden {
+    display: none;
+}
