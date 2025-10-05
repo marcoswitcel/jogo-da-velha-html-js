@@ -67,5 +67,13 @@ export class AppContext {
     this.rootModalElement.classList.remove('app-modal__hidden');
     this.rootModalElement.querySelector('.title').innerHTML = title;
     this.rootModalElement.querySelector('.description').innerHTML = description;
+    this.rootModalElement.querySelector('#modal-btn-confirm').addEventListener('click', () => {
+      this.rootModalElement.classList.add('app-modal__hidden');
+      confirm();
+    })
+    this.rootModalElement.querySelector('#modal-btn-decline').addEventListener('click', () => {
+      this.rootModalElement.classList.add('app-modal__hidden');
+      decline();
+    })
   }
 }
