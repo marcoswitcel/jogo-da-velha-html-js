@@ -45,7 +45,7 @@ export class InGameView extends View {
             },
           });
         } else if (this.ticTacToe.checkForATie()) {
-          this.ctx.confirm('Empate', 'Deseja jogar novamente?', {
+          this.ctx.confirm('O jogo terminou em empate', 'Deseja jogar novamente?', {
             confirm: () => {
               this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
             },

@@ -120,18 +120,53 @@ html, body {
     background-color: rgba(0, 0, 0, 0.12);
 }
 
-.app-modal .confirm-box {
+.app-modal-confirm-alert .confirm-box {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: block;
-    width: 90%;
-    max-width: 500px;
+    width: 70VW;
+    max-width: 485px;
     background-color: white;
     padding: 1em;
     box-sizing: border-box;
+    text-align: center;
 }
+
+.app-modal-confirm-alert .confirm-box .title {
+    text-align: center;
+}
+
+.app-modal-confirm-alert .confirm-box .description {
+    text-align: center;
+}
+
+.app-modal-confirm-alert .confirm-box .btn-modal {
+    padding: 1em 1.5em;
+    border: 2px solid transparent;
+    color: white;
+    width: auto;
+    margin: .5em;
+    max-width: 200px;
+    background-color: rgba(0,0,255,1);
+    outline: none;
+    user-select: none;
+    animation: all .3 ease-in-out;
+    border-radius: .9em;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: serif;
+}
+
+.app-modal-confirm-alert .confirm-box .btn-modal:hover,
+.app-modal-confirm-alert .confirm-box .btn-modal:focus,
+.app-modal-confirm-alert .confirm-box .btn-modal:active {
+    background-color: rgba(0,0,255,0.9);
+    border: 2px solid white;
+    transform: scale(1.1);
+}
+
 
 .app-modal__hidden {
     display: none;

@@ -20,7 +20,7 @@ export class ConfirmAlertView extends View {
   declineHandle;
 
   constructor(ctx, title, descritption, confirmHandle, declineHandle) {
-    super('app-moda-confirm-alert', getById('app-modal-confirm-alert'), ctx);
+    super('app-modal-confirm-alert', getById('app-modal-confirm-alert'), ctx);
     this.title = title;
     this.descritption = descritption;
     this.confirmHandle = confirmHandle;
