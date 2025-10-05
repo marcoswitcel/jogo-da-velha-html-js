@@ -32,38 +32,28 @@ export class InGameView extends View {
         if (this.ticTacToe.grid[row][col] != '-') return;
 
         this.ticTacToe.grid[row][col] = this.ctx.player;
-
-        // @todo João, terminar o modal de confirmação padrão e depois disso generalizar para suportar diversos tipos de modal
-        this.ctx.confirm('teste', 'Descrição do alerta de confirmação', {
-          confirm: () => {
-            console.log('Clicou em \'aceitar\'');
-          },
-          decline: () => {
-            console.log('Clicou em \'recusar\'');
-          },
-        });
+        
+        entry.innerText = this.ctx.player;
 
         if (this.ticTacToe.checkForWin()) {
-          setTimeout(() => {
-            const result = confirm(`Vitória do jogador: ${this.ctx.player}. Deseja jogar novamente?`);
-            if (result) {
+          this.ctx.confirm(`Vitória do jogador: ${this.ctx.player}`, 'Deseja jogar novamente?', {
+            confirm: () => {
               this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
-            } else {
+            },
+            decline: () => {
               this.ctx.queueToChange(new MenuView(this.ctx));
-            }
-          }, 0);
+            },
+          });
         } else if (this.ticTacToe.checkForATie()) {
-          entry.innerText = this.ctx.player;
-          setTimeout(() => {
-            const result = confirm(`Empate! Deseja jogar novamente?`);
-            if (result) {
+          this.ctx.confirm('Empate', 'Deseja jogar novamente?', {
+            confirm: () => {
               this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
-            } else {
+            },
+            decline: () => {
               this.ctx.queueToChange(new MenuView(this.ctx));
-            }
-          }, 0);
+            },
+          });
         } else {
-          entry.innerText = this.ctx.player;
           this.ctx.changePlayer();
           playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
           playerDisplay.dataset.turn = this.ctx.player;
