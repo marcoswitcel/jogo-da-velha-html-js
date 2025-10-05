@@ -21,6 +21,17 @@ requestAnimationFrame(function managmentLoop() {
     context.attachElementsToContainer(view);
   }
 
+  if (context.queuedForEnteringModal.length) {
+    const view = context.queuedForEnteringModal.shift();
+    if (context.currentModalView) {
+      context.currentModalView.cleanup();
+    }
+    context.currentModalView = view;
+    view.setup();
+
+    context.attachElementsToModal(view);
+  }
+
   requestAnimationFrame(managmentLoop);
 });
 

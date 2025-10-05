@@ -1,3 +1,4 @@
+import { ConfirmAlertView } from './view/confirm-alert-view.js';
 import { View } from './view/view.js';
 
 export class AppContext {
@@ -5,11 +6,21 @@ export class AppContext {
    * @type {View[]}
    */
   queuedForEntering = [];
+
+  /**
+   * @type {View[]}
+   */
+  queuedForEnteringModal = [];
   
   /**
    * @type {View|null}
    */
   currentView = null;
+
+  /**
+   * @type {View|null}
+   */
+  currentModalView = null;
 
   /**
    * @type {'O'|'X'}
@@ -46,8 +57,31 @@ export class AppContext {
     this.rootElement.appendChild(view.rootElement);
   }
 
-  queueToChange(view) {
-    this.queuedForEntering.push(view);
+  /**
+   * 
+   * @param {View} view 
+   */
+  attachElementsToModal(view) {
+    this.rootModalElement.setAttribute('class', `app-modal ${view.viewName}`);
+    this.rootModalElement.innerHTML = ''; // @todo Otimizar isso aqui
+    this.rootModalElement.appendChild(view.rootElement);
+  }
+
+  hiddeModal() {
+    this.rootModalElement.classList.add('app-modal__hidden');
+  }
+
+  /**
+   * 
+   * @param {View} view 
+   * @param {'app_view'|'modal'} mode 
+   */
+  queueToChange(view, mode = 'app_view') {
+    if (mode === 'modal') {
+      this.queuedForEnteringModal.push(view);
+    } else {
+      this.queuedForEntering.push(view);
+    }
   }
 
   changePlayer() {
@@ -64,16 +98,6 @@ export class AppContext {
     // @todo João, refatorar isso aqui "implantar" o html padrão de novo toda vez pra evitar ficar com estado quebrado
     // @todo João, implementar callbacks e ajsutar layout
 
-    this.rootModalElement.classList.remove('app-modal__hidden');
-    this.rootModalElement.querySelector('.title').innerHTML = title;
-    this.rootModalElement.querySelector('.description').innerHTML = description;
-    this.rootModalElement.querySelector('#modal-btn-confirm').addEventListener('click', () => {
-      this.rootModalElement.classList.add('app-modal__hidden');
-      confirm();
-    })
-    this.rootModalElement.querySelector('#modal-btn-decline').addEventListener('click', () => {
-      this.rootModalElement.classList.add('app-modal__hidden');
-      decline();
-    })
+    this.queueToChange(new ConfirmAlertView(this, title, description, confirm, decline), 'modal');
   }
 }
