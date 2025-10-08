@@ -11,6 +11,8 @@ export class InGameView extends View {
 
   ticTacToe;
 
+  acceptingClicks = true;
+
   constructor(ctx, playerMode) {
     super('app-view-in-game', getById('app-view-in-game'), ctx);
     this.playerMode = playerMode;
@@ -22,6 +24,9 @@ export class InGameView extends View {
 
     this.query('.grid__cell').forEach(entry => {
       entry.addEventListener('click', _ => {
+
+        if (!this.acceptingClicks) return;
+
         const index = parseInt(entry.dataset.index);
         const row = Math.floor(index / 3);
         const col = index % 3;
@@ -57,8 +62,29 @@ export class InGameView extends View {
           this.ctx.changePlayer();
           playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
           playerDisplay.dataset.turn = this.ctx.player;
+
+          if (this.playerMode == 2 && this.ctx.player === 'X') {
+            this.lockGridInput();
+            // @todo João, incluir um lógica de seleção de célula. Para começar pode pegar qualquer uma
+            // e rodar os testes de empate ou término do jogo
+            setInterval(() => { this.unlockGridInput(); }, 2000);
+          }
         }
       });
     })
+  }
+
+  /**
+   * @private
+   */
+  lockGridInput() {
+    this.acceptingClicks = false;
+  }
+
+  /**
+   * @private
+   */
+  unlockGridInput() {
+    this.acceptingClicks = true;
   }
 }
