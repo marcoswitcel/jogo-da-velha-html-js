@@ -43,6 +43,10 @@ html, body {
     background-color: rgba(0, 0, 0, 0.15);
 }
 
+.grid__cell.active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 .is-visible {
     display: block;
 }

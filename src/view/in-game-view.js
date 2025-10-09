@@ -90,6 +90,13 @@ export class InGameView extends View {
             const index = i * 3 + j;
             console.assert(index < this.gridCellElements.length);
             this.gridCellElements[index].innerText = this.ctx.player;
+            
+            // @todo João, refazer isso com uma classe de animação...
+            this.gridCellElements[index].classList.add('active');
+            setTimeout(() => {
+              this.gridCellElements[index].classList.remove('active');
+            }, 40);
+
             this.unlockGridInput();
             this.processChoice();
             return;
