@@ -13,16 +13,29 @@ export class InGameView extends View {
 
   acceptingClicks = true;
 
+  /**
+   * @type {HTMLElement}
+   */
+  playerDisplay;
+
+  /**
+   * @type {HTMLElement[]}
+   */
+  gridCellElements;
+
   constructor(ctx, playerMode) {
     super('app-view-in-game', getById('app-view-in-game'), ctx);
     this.playerMode = playerMode;
     this.ticTacToe = new TicTacToe();
+    // elementos
+    this.playerDisplay = this.query('.player-display')[0];
+    this.gridCellElements = this.query('.grid__cell');
   }
 
   setup() {
-    const [ playerDisplay ] = this.query('.player-display');
+    this.updateplayerDisplay();
 
-    this.query('.grid__cell').forEach(entry => {
+    this.gridCellElements.forEach(entry => {
       entry.addEventListener('click', _ => {
 
         if (!this.acceptingClicks) return;
@@ -60,14 +73,10 @@ export class InGameView extends View {
           });
         } else {
           this.ctx.changePlayer();
-          playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
-          playerDisplay.dataset.turn = this.ctx.player;
+          this.updateplayerDisplay();
 
           if (this.playerMode == 2 && this.ctx.player === 'X') {
-            this.lockGridInput();
-            // @todo João, incluir um lógica de seleção de célula. Para começar pode pegar qualquer uma
-            // e rodar os testes de empate ou término do jogo
-            setInterval(() => { this.unlockGridInput(); }, 2000);
+            this.makePlayer2Choice();
           }
         }
       });
@@ -86,5 +95,46 @@ export class InGameView extends View {
    */
   unlockGridInput() {
     this.acceptingClicks = true;
+  }
+  /**
+   * @private
+   */
+  updateplayerDisplay() {
+    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
+    this.playerDisplay.dataset.turn = this.ctx.player;
+  }
+
+  makePlayer2Choice() {
+    this.lockGridInput();
+
+    setTimeout(() => {
+      let hasChoosen = false;
+      let i = 0;
+      let j = 0;
+
+      outerLoop:
+      for (; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+          if (this.ticTacToe.grid[i][j] === '-') {
+            this.ticTacToe.grid[i][j] = this.ctx.player;
+            hasChoosen = true;
+            break outerLoop;
+          }
+        }
+      }
+
+      if (hasChoosen) {
+        const index = i * 3 + j;
+        console.assert(index < this.gridCellElements.length);
+        this.gridCellElements[index].innerText = this.ctx.player;
+        this.ctx.changePlayer();
+        this.updateplayerDisplay();
+      } else {
+        console.assert(hasChoosen, "Não deveria ter passado por aqui sem nenhum espaço em branco na Grid. Avaliar");
+        console.table(this.ticTacToe.grid);
+      }
+      
+      this.unlockGridInput();
+    }, 1000);
   }
 }
