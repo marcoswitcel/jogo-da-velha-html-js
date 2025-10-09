@@ -53,32 +53,7 @@ export class InGameView extends View {
         
         entry.innerText = this.ctx.player;
 
-        if (this.ticTacToe.checkForWin()) {
-          this.ctx.confirm(`Vitória do jogador: ${this.ctx.player}`, 'Deseja jogar novamente?', {
-            confirm: () => {
-              this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
-            },
-            decline: () => {
-              this.ctx.queueToChange(new MenuView(this.ctx));
-            },
-          });
-        } else if (this.ticTacToe.checkForATie()) {
-          this.ctx.confirm('O jogo terminou em empate', 'Deseja jogar novamente?', {
-            confirm: () => {
-              this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
-            },
-            decline: () => {
-              this.ctx.queueToChange(new MenuView(this.ctx));
-            },
-          });
-        } else {
-          this.ctx.changePlayer();
-          this.updateplayerDisplay();
-
-          if (this.playerMode == 2 && this.ctx.player === 'X') {
-            this.makePlayer2Choice();
-          }
-        }
+        this.processChoice();
       });
     })
   }
@@ -108,33 +83,55 @@ export class InGameView extends View {
     this.lockGridInput();
 
     setTimeout(() => {
-      let hasChoosen = false;
-      let i = 0;
-      let j = 0;
-
-      outerLoop:
-      for (; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
           if (this.ticTacToe.grid[i][j] === '-') {
             this.ticTacToe.grid[i][j] = this.ctx.player;
-            hasChoosen = true;
-            break outerLoop;
+            const index = i * 3 + j;
+            console.assert(index < this.gridCellElements.length);
+            this.gridCellElements[index].innerText = this.ctx.player;
+            this.unlockGridInput();
+            this.processChoice();
+            return;
           }
         }
       }
 
-      if (hasChoosen) {
-        const index = i * 3 + j;
-        console.assert(index < this.gridCellElements.length);
-        this.gridCellElements[index].innerText = this.ctx.player;
-        this.ctx.changePlayer();
-        this.updateplayerDisplay();
-      } else {
-        console.assert(hasChoosen, "Não deveria ter passado por aqui sem nenhum espaço em branco na Grid. Avaliar");
-        console.table(this.ticTacToe.grid);
-      }
+      console.assert(false, "Não deveria ter passado por aqui sem nenhum espaço em branco na Grid. Avaliar");
+      console.table(this.ticTacToe.grid);
       
-      this.unlockGridInput();
-    }, 1000);
+    }, 500 + Math.random() * 1000);
+  }
+
+  /**
+   * @private
+   */
+  processChoice() {
+    if (this.ticTacToe.checkForWin()) {
+      this.ctx.confirm(`Vitória do jogador: ${this.ctx.player}`, 'Deseja jogar novamente?', {
+        confirm: () => {
+          this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
+        },
+        decline: () => {
+          this.ctx.queueToChange(new MenuView(this.ctx));
+        },
+      });
+    } else if (this.ticTacToe.checkForATie()) {
+      this.ctx.confirm('O jogo terminou em empate', 'Deseja jogar novamente?', {
+        confirm: () => {
+          this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
+        },
+        decline: () => {
+          this.ctx.queueToChange(new MenuView(this.ctx));
+        },
+      });
+    } else {
+      this.ctx.changePlayer();
+      this.updateplayerDisplay();
+
+      if (this.playerMode == 2 && this.ctx.player === 'X') {
+        this.makePlayer2Choice();
+      }
+    }
   }
 }
