@@ -62,13 +62,10 @@ html, body {
 
 .app-view-in-game .player-display {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 50%;
 }
-.app-view-in-game .player-display[data-turn=O] {
-    left: auto;
-    right: 0;
-}
+.app-view-in-game .player-display[data-turn=O] {}
 
 .app-container {
     height: 100vh;

@@ -74,13 +74,15 @@ export class InGameView extends View {
   /**
    * @private
    */
-  updateplayerDisplay() {
-    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player}`;
+  updateplayerDisplay(message = '') {
+    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player} ${message}`;
     this.playerDisplay.dataset.turn = this.ctx.player;
   }
 
   makePlayer2Choice() {
     this.lockGridInput();
+
+    this.updateplayerDisplay('[ decidindo ]');
 
     setTimeout(() => {
       for (let i = 0; i < 3; i++) {
