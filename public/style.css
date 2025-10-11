@@ -91,8 +91,8 @@ html, body {
 
 .app-view-menu .btn {
     padding: 1em 1.5em;
-    border: 2px solid #131313;
-    color: #131313;
+    border: 2px solid #333;
+    color: #333;
     width: auto;
     margin: .5em;
     max-width: 200px;
@@ -107,7 +107,7 @@ html, body {
 }
 
 .app-view-menu .btn:hover, .app-view-menu .btn:focus, .app-view-menu .btn:active {
-    background-color: #131313;
+    background-color: #333;
     color: white;
 }
 
@@ -125,6 +125,9 @@ html, body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 .app-modal:active {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+.app-modal.active {
     background-color: rgba(0, 0, 0, 0.12);
 }
 
@@ -152,8 +155,8 @@ html, body {
 
 .app-modal-confirm-alert .confirm-box .btn-modal {
     padding: 1em 1.5em;
-    border: 2px solid #131313;
-    color: #131313;
+    border: 2px solid #333;
+    color: #333;
     width: auto;
     margin: .5em;
     max-width: 200px;
@@ -169,7 +172,7 @@ html, body {
 
 .app-modal-confirm-alert .confirm-box .btn-modal:hover,
 .app-modal-confirm-alert .confirm-box .btn-modal:focus {
-    background-color: #131313;
+    background-color: #333;
     color: white;
 }
 
