@@ -1,6 +1,8 @@
 import { delayHandler, getById } from '../utils.js';
 import { View } from './view.js';
 
+const DELAY_DISPATCH_CLOSE = 50;
+
 export class ConfirmAlertView extends View {
   /**
    * @type {string}
@@ -35,14 +37,14 @@ export class ConfirmAlertView extends View {
       delayHandler(() => {
         this.ctx.hiddeModal();
         if (this.confirmHandle) this.confirmHandle();
-      }, 50);
+      }, DELAY_DISPATCH_CLOSE);
     })
     this.rootElement.querySelector('#modal-btn-decline').addEventListener('click', () => {
       // @todo João, avaliar uma forma mais organizada de configurar as transições
       delayHandler(() => {
         this.ctx.hiddeModal();
         if (this.declineHandle) this.declineHandle();
-      }, 50);
+      }, DELAY_DISPATCH_CLOSE);
     })
   }
 }
