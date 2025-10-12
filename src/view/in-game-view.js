@@ -34,6 +34,8 @@ export class InGameView extends View {
 
   setup() {
     this.updateplayerDisplay();
+    
+    document.addEventListener('keyup', this.handleKeyUp);
 
     this.gridCellElements.forEach(entry => {
       entry.addEventListener('click', _ => {
@@ -56,6 +58,27 @@ export class InGameView extends View {
         this.processChoice();
       });
     })
+  }
+
+  cleanup() {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  /**
+   * 
+   * @param {KeyboardEvent} e 
+   */
+  handleKeyUp = (e) => {
+    if (e.code === 'Escape') {
+      this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
+        confirmDescription: 'Retomar Partida',
+        declineDescription: 'Voltar ao Menu',
+        confirm: () => {},
+        decline: () => {
+          this.ctx.queueToChange(new MenuView(this.ctx));
+        },
+      });
+    }
   }
 
   /**

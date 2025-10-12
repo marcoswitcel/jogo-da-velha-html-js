@@ -21,17 +21,23 @@ export class ConfirmAlertView extends View {
    */
   declineHandle;
 
-  constructor(ctx, title, descritption, confirmHandle, declineHandle) {
+  buttonConfirmDescription;
+  buttonDeclineDescription;
+
+  constructor(ctx, title, descritption, confirmHandle, declineHandle, confirmDescription = 'Sim', declineDescription = 'Não') {
     super('app-modal-confirm-alert', getById('app-modal-confirm-alert'), ctx);
     this.title = title;
     this.descritption = descritption;
     this.confirmHandle = confirmHandle;
     this.declineHandle = declineHandle;
+    this.confirmDescription = confirmDescription;
+    this.declineDescription = declineDescription;
   }
 
   setup() {
     this.rootElement.querySelector('.title').innerHTML = this.title;
     this.rootElement.querySelector('.description').innerHTML = this.descritption;
+    this.rootElement.querySelector('#modal-btn-confirm').innerHTML = this.confirmDescription;
     this.rootElement.querySelector('#modal-btn-confirm').addEventListener('click', () => {
       // @todo João, avaliar uma forma mais organizada de configurar as transições
       delayHandler(() => {
@@ -39,6 +45,7 @@ export class ConfirmAlertView extends View {
         if (this.confirmHandle) this.confirmHandle();
       }, DELAY_DISPATCH_CLOSE);
     })
+    this.rootElement.querySelector('#modal-btn-decline').innerHTML = this.declineDescription;
     this.rootElement.querySelector('#modal-btn-decline').addEventListener('click', () => {
       // @todo João, avaliar uma forma mais organizada de configurar as transições
       delayHandler(() => {
