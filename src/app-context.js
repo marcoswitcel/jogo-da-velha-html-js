@@ -100,4 +100,8 @@ export class AppContext {
 
     this.queueToChange(new ConfirmAlertView(this, title, description, confirm, decline, confirmDescription, declineDescription ), 'modal');
   }
+
+  isModalOpen() {
+    return !this.rootModalElement.classList.contains('app-modal__hidden');
+  }
 }
