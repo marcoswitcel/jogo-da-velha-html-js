@@ -89,32 +89,6 @@ html, body {
     font-size: 4em;
 }
 
-.app-view-menu .btn {
-    padding: 1em 1.5em;
-    border: 2px solid #333;
-    color: #333;
-    width: auto;
-    margin: .5em;
-    max-width: 200px;
-    background-color: white;
-    outline: none;
-    user-select: none;
-    animation: all .3 ease-in-out;
-    border-radius: .9em;
-    font-size: 1em;
-    cursor: pointer;
-    font-family: serif;
-}
-
-.app-view-menu .btn:hover, .app-view-menu .btn:focus, .app-view-menu .btn:active {
-    background-color: #333;
-    color: white;
-}
-
-.app-view-menu .btn:active {
-    opacity: 0.9;
-}
-
 .app-modal {
     display: block;
     position: fixed;
@@ -154,34 +128,6 @@ html, body {
 .app-modal-confirm-alert .confirm-box .description {
     text-align: center;
 }
-
-.app-modal-confirm-alert .confirm-box .btn-modal {
-    padding: 1em 1.5em;
-    border: 2px solid #333;
-    color: #333;
-    width: auto;
-    margin: .5em;
-    max-width: 200px;
-    background-color: white;
-    outline: none;
-    user-select: none;
-    animation: all .3 ease-in-out;
-    border-radius: .9em;
-    font-size: 1em;
-    cursor: pointer;
-    font-family: serif;
-}
-
-.app-modal-confirm-alert .confirm-box .btn-modal:hover,
-.app-modal-confirm-alert .confirm-box .btn-modal:focus {
-    background-color: #333;
-    color: white;
-}
-
-.app-modal-confirm-alert .confirm-box .btn-modal:active {
-    opacity: 0.9;
-}
-
 
 .app-modal__hidden {
     display: none;

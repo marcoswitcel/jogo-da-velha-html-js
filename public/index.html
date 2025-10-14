@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Velha</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./buttons.css">
     <template id="app-view-menu">
         <div class="app-screen">
             <h1 class="title">Jogo da Velha</h1>
-            <button id="btn-action-play" class="btn" type="button">1 jogador</button>
-            <button id="btn-action-play2" class="btn" type="button">2 jogador</button>
-            <button id="btn-action-config" class="btn" type="button">Configurações</button>
+            <button id="btn-action-play" class="default-btn" type="button">1 jogador</button>
+            <button id="btn-action-play2" class="default-btn" type="button">2 jogador</button>
+            <button id="btn-action-config" class="default-btn" type="button">Configurações</button>
         </div>
     </template>
     <template id="app-view-config">
@@ -41,8 +42,8 @@
             <p class="description">
                 Descrição e ou explicação do alerta. Com dúvida?
             </p>
-            <button id="modal-btn-decline" class="btn-modal">Não</button>
-            <button id="modal-btn-confirm" class="btn-modal">Sim</button>
+            <button id="modal-btn-decline" class="default-btn">Não</button>
+            <button id="modal-btn-confirm" class="default-btn">Sim</button>
         </div>
     </template>
 </head>
