@@ -24,7 +24,7 @@ export class InGameView extends View {
   gridCellElements;
 
   constructor(ctx, playerMode) {
-    super('app-view-in-game', getById('app-view-in-game'), ctx);
+    super('app-view-in-game', getById('app-view-in-game'), ctx, 'Partida em andamento - Jogo da Velha');
     this.playerMode = playerMode;
     this.ticTacToe = new TicTacToe();
     // elementos

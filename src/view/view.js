@@ -15,11 +15,17 @@ export class View {
    */
   ctx;
 
-  constructor(name, template, ctx) {
+  /**
+   * @type {string|null}
+   */
+  description;
+
+  constructor(name, template, ctx, description = null) {
     this.viewName = name;
     this.template = template;
     this.rootElement = template.content.cloneNode(true);
     this.ctx = ctx;
+    this.description = description;
   }
 
   setup() {}
