@@ -1,4 +1,12 @@
 
+/**
+checar qual abordagem usar...
+
+:root {
+    color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {}
+*/
 
 html, body {
     padding: 0;
