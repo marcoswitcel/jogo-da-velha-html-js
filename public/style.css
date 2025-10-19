@@ -5,8 +5,19 @@ checar qual abordagem usar...
 :root {
     color-scheme: light dark;
 }
-@media (prefers-color-scheme: dark) {}
 */
+
+:root {
+    --bg-color: white;
+    --font-color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #333;
+        --font-color: white;
+    }
+}
 
 html, body {
     padding: 0;
@@ -77,10 +88,7 @@ html, body {
 
 .app-container {
     height: 100vh;
-}
-
-.app-view-menu {
-    background-color: white;
+    background-color: var(--bg-color);
 }
 
 .app-view-menu .app-screen {
@@ -93,7 +101,25 @@ html, body {
 }
 
 .app-view-menu .title {
-    color: #333;
+    color: var(--font-color);
+    font-size: 4em;
+}
+
+.app-view-config {
+    background-color: var(--bg-color);
+}
+
+.app-view-config .app-screen {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.app-view-config .title {
+    color: var(--font-color);
     font-size: 4em;
 }
 
@@ -123,7 +149,7 @@ html, body {
     display: block;
     width: 70VW;
     max-width: 485px;
-    background-color: white;
+    background-color: var(--bg-color);
     padding: 1em;
     box-sizing: border-box;
     text-align: center;

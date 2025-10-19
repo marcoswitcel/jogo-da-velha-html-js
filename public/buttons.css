@@ -2,12 +2,12 @@
 .app-container .default-btn,
 .app-modal .default-btn {
     padding: 1em 1.5em;
-    border: 2px solid #333;
-    color: #333;
+    border: 2px solid var(--font-color);
+    color: var(--font-color);
     width: auto;
     margin: .5em;
     max-width: 200px;
-    background-color: white;
+    background-color: var(--bg-color);
     outline: none;
     user-select: none;
     border-radius: .9em;
@@ -23,8 +23,8 @@
 .app-modal .default-btn:focus,
 .app-container .default-btn:active,
 .app-modal .default-btn:active {
-    background-color: #333;
-    color: white;
+    background-color: var(--font-color);
+    color: var(--bg-color);
 }
 
 .app-container .default-btn:active,
