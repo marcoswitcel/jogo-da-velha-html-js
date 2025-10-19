@@ -9,6 +9,7 @@ const context = new AppContext(getById('app'), getById('app-modal'));
 
 context.loadConfig();
 
+
 context.queueToChange(new MenuView(context));
 
 requestAnimationFrame(function managmentLoop() {

@@ -66,6 +66,10 @@ export class AppContext {
     } catch (ex) {
       console.error(`Valor inválido para tema: ${localStorage.getItem('app.config')}\nStack a seguir:\n`, ex);
     }
+
+    if (this.config === null) {
+      this.config = { theme: 'Light' };
+    }
   }
 
   saveConfig() {
@@ -75,7 +79,22 @@ export class AppContext {
   }
 
   applyTheme() {
-    // @todo João, implementar
+    const theme = this.config.theme;
+
+    if (theme === 'Dark') {
+      // força "modo escuro" com com a classe 'dark-mode-on'
+      this.rootElement.classList.add('dark-mode-on')
+      this.rootElement.classList.remove('system-preferences-theme');
+    } else if (theme === 'Inherit') {
+      // força "herdar do sistema" com com a classe 'system-preferences-theme', esta classe depende de estar
+      // ativado o "modo escuro" para aplicar o tema do "modo escuro"
+      this.rootElement.classList.add('system-preferences-theme');
+      this.rootElement.classList.remove('dark-mode-on')
+    } else if (theme === 'Light')  {
+      // O padrão é o "modo claro"
+      this.rootElement.classList.remove('dark-mode-on');
+      this.rootElement.classList.remove('system-preferences-theme');
+    }
   }
 
   /**
@@ -86,6 +105,8 @@ export class AppContext {
     this.rootElement.setAttribute('class', `app-container ${view.viewName}`);
     this.rootElement.innerHTML = ''; // @todo Otimizar isso aqui
     this.rootElement.appendChild(view.rootElement);
+
+    this.applyTheme();
   }
 
   /**
