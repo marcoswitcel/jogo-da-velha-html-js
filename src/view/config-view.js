@@ -1,4 +1,5 @@
 import { getById } from '../utils.js';
+import { MenuView } from './menu-view.js';
 import { View } from './view.js';
 
 export class ConfigView extends View {
@@ -30,6 +31,10 @@ export class ConfigView extends View {
         this.ctx.saveConfig();
         this.ctx.applyTheme();
       }
-    })
+    });
+
+    this.query('#btn-action-menu')[0].addEventListener('click', e => {
+      this.ctx.queueToChange(new MenuView(this.ctx));
+    });
   }
 }

@@ -58,6 +58,7 @@ html, body {
     font-size: inherit;
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--font-color);
 }
 
 .grid__cell:hover {
@@ -89,6 +90,7 @@ html, body {
     position: absolute;
     top: 10px;
     left: 50%;
+    color: var(--font-color);
 }
 .app-view-in-game .player-display[data-turn=O] {}
 
@@ -113,6 +115,10 @@ html, body {
 
 .app-view-config {
     background-color: var(--bg-color);
+}
+
+.app-view-config p {
+    color: var(--font-color);
 }
 
 .app-view-config .app-screen {
