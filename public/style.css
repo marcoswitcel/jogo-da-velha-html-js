@@ -24,6 +24,7 @@ html, body {
     margin: 0;
     font-family: serif;
     user-select: none;
+    color: var(--font-color);
 }
 
 .root {
