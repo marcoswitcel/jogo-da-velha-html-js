@@ -7,6 +7,8 @@ console.log('Olá mundo do "Jogo da Velha" em HTML');
 const defaultPageTitle = 'Jogo da Velha';
 const context = new AppContext(getById('app'), getById('app-modal'));
 
+context.loadConfig();
+
 context.queueToChange(new MenuView(context));
 
 requestAnimationFrame(function managmentLoop() {

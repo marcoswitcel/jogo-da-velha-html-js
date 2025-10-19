@@ -38,6 +38,11 @@ export class AppContext {
   rootModalElement;
 
   /**
+   * @type {{ theme: 'Dark' | 'Light' | 'Inherit' } | null}
+   */
+  config = null;
+
+  /**
    * 
    * @param {HTMLElement} rootElement 
    * @param {HTMLElement} rootModalElement 
@@ -45,6 +50,32 @@ export class AppContext {
   constructor(rootElement, rootModalElement) {
     this.rootElement = rootElement;
     this.rootModalElement = rootModalElement;
+  }
+
+  loadConfig() {
+    try {
+      const loadedConfig = JSON.parse(localStorage.getItem('app.config'));
+      const theme = (loadedConfig === null) ? 'Inherit' :  loadedConfig.theme;
+  
+      // @note João, pora hora sanitizando assim...
+      if (theme && 'Dark,Light,Inherit'.indexOf(theme) != -1) {
+        this.config = { theme: theme };
+      } else {
+        console.warn(`Valor inválido para tema: ${theme}`);
+      }
+    } catch (ex) {
+      console.error(`Valor inválido para tema: ${localStorage.getItem('app.config')}\nStack a seguir:\n`, ex);
+    }
+  }
+
+  saveConfig() {
+    if (this.config) {
+      localStorage.setItem('app.config', JSON.stringify(this.config));
+    }
+  }
+
+  applyTheme() {
+    // @todo João, implementar
   }
 
   /**
