@@ -13,10 +13,15 @@ checar qual abordagem usar...
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    .system-preferences-theme {
         --bg-color: #333;
         --font-color: white;
     }
+}
+
+.dark-mode-on {
+    --bg-color: #333;
+    --font-color: white;
 }
 
 html, body {
