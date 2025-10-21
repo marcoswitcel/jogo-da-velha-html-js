@@ -85,15 +85,24 @@ export class AppContext {
       // força "modo escuro" com com a classe 'dark-mode-on'
       this.rootElement.classList.add('dark-mode-on')
       this.rootElement.classList.remove('system-preferences-theme');
+      // modal
+      this.rootModalElement.classList.add('dark-mode-on')
+      this.rootModalElement.classList.remove('system-preferences-theme');
     } else if (theme === 'Inherit') {
       // força "herdar do sistema" com com a classe 'system-preferences-theme', esta classe depende de estar
       // ativado o "modo escuro" para aplicar o tema do "modo escuro"
       this.rootElement.classList.add('system-preferences-theme');
       this.rootElement.classList.remove('dark-mode-on')
+      // modal
+      this.rootModalElement.classList.add('system-preferences-theme');
+      this.rootModalElement.classList.remove('dark-mode-on')
     } else if (theme === 'Light')  {
       // O padrão é o "modo claro"
       this.rootElement.classList.remove('dark-mode-on');
       this.rootElement.classList.remove('system-preferences-theme');
+      // modal
+      this.rootModalElement.classList.remove('dark-mode-on');
+      this.rootModalElement.classList.remove('system-preferences-theme');
     }
   }
 
@@ -117,6 +126,8 @@ export class AppContext {
     this.rootModalElement.setAttribute('class', `app-modal ${view.viewName}`);
     this.rootModalElement.innerHTML = ''; // @todo Otimizar isso aqui
     this.rootModalElement.appendChild(view.rootElement);
+
+    this.applyTheme();
   }
 
   hiddeModal() {

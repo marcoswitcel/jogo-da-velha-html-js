@@ -165,6 +165,7 @@ html, body {
     padding: 1em;
     box-sizing: border-box;
     text-align: center;
+    color: var(--font-color);
 }
 
 .app-modal-confirm-alert .confirm-box .title {
