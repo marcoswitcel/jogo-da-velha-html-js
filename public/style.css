@@ -135,6 +135,34 @@ html, body {
     font-size: 4em;
 }
 
+.app-view-config .theme-mode-select {
+    padding: 1em 1.5em;
+    border: 2px solid var(--font-color);
+    color: var(--font-color);
+    width: auto;
+    margin: .5em;
+    background-color: var(--bg-color);
+    outline: none;
+    user-select: none;
+    border-radius: .9em;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: serif;
+    transition: all .1s ease-out;
+}
+
+.app-view-config .theme-mode-select:focus,
+.app-view-config .theme-mode-select:hover,
+.app-view-config .theme-mode-select:active {
+    background-color: var(--font-color);
+    color: var(--bg-color);
+}
+
+.app-view-config .theme-mode-select:active {
+    opacity: 0.9;
+}
+
+
 .app-modal {
     display: block;
     position: fixed;
