@@ -34,6 +34,8 @@ export class InGameView extends View {
 
   setup() {
     this.updateplayerDisplay();
+
+    this.ctx.resetPlayState();
     
     document.addEventListener('keyup', this.handleKeyUp);
 

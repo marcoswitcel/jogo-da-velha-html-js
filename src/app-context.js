@@ -106,6 +106,10 @@ export class AppContext {
     }
   }
 
+  resetPlayState() {
+    this.player = 'O';
+  }
+
   /**
    * 
    * @param {View} view 
