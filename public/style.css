@@ -180,8 +180,8 @@ html, body {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.1);
-    animation: show forwards .2s;
-    animation-timing-function: ease-in-out;
+    animation: show forwards .15s;
+    animation-timing-function: ease-out;
 }
 .app-modal:active {
     background-color: rgba(0, 0, 0, 0.12);
