@@ -10,12 +10,19 @@ checar qual abordagem usar...
 :root {
     --bg-color: white;
     --font-color: #333;
+    --font-size-title: 4em;
 }
 
 @media (prefers-color-scheme: dark) {
     .system-preferences-theme {
         --bg-color: #333;
         --font-color: white;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    :root {
+        --font-size-title: 3em;
     }
 }
 
@@ -41,10 +48,10 @@ html, body {
 .grid {
     display: flex;
     flex-wrap: wrap;
-    width: 75VW;
+    width: 85VW;
     max-width: 500px;
     margin: auto;
-    font-size: min(calc(75VW / 4), calc(500px / 4));
+    font-size: min(calc(85VW / 4), calc(500px / 4));
 }
 
 .grid__cell {
@@ -113,7 +120,7 @@ html, body {
 
 .app-view-menu .title {
     color: var(--font-color);
-    font-size: 4em;
+    font-size: var(--font-size-title);
     margin: 0 0 .35em;
 }
 
@@ -136,7 +143,7 @@ html, body {
 
 .app-view-config .title {
     color: var(--font-color);
-    font-size: 4em;
+    font-size: var(--font-size-title);
 }
 
 .app-view-config .theme-mode-select {
@@ -196,7 +203,7 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: block;
-    width: 70VW;
+    width: 80VW;
     max-width: 485px;
     background-color: var(--bg-color);
     padding: 1em;
