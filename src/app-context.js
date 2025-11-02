@@ -162,9 +162,6 @@ export class AppContext {
    * @param {{ confirm: () => void, decline: () => void, confirmDescription?: string, declineDescription?: string }} param2 
    */
   confirm(title, description, { confirm, decline, confirmDescription = 'Jogar Novamente', declineDescription = 'Voltar ao Menu' }) {
-    // @todo João, refatorar isso aqui "implantar" o html padrão de novo toda vez pra evitar ficar com estado quebrado
-    // @todo João, implementar callbacks e ajsutar layout
-
     this.queueToChange(new ConfirmAlertView(this, title, description, confirm, decline, confirmDescription, declineDescription ), 'modal');
   }
 
