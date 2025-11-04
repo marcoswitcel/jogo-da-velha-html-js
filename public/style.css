@@ -67,6 +67,8 @@ html, body {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.05);
     color: var(--font-color);
+    overflow: hidden;
+    line-height: 1.3em;
 }
 
 .grid__cell:hover {
