@@ -168,4 +168,17 @@ export class InGameView extends View {
       }
     }
   }
+
+  onBackPressed() {
+    if (!this.ctx.isModalOpen()) {
+      this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
+        confirmDescription: 'Retomar Partida',
+        declineDescription: 'Voltar ao Menu',
+        confirm: () => {},
+        decline: () => {
+          this.ctx.queueToChange(new MenuView(this.ctx));
+        },
+      });
+    }
+  }
 }

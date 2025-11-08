@@ -28,6 +28,7 @@ requestAnimationFrame(function managmentLoop() {
       document.title = defaultPageTitle;
     }
 
+    history.replaceState({ view: view.viewName }, '');
     context.attachElementsToContainer(view);
   }
 
@@ -39,9 +40,26 @@ requestAnimationFrame(function managmentLoop() {
     context.currentModalView = view;
     view.setup();
 
+    // @note João, adicionar a history state?
     context.attachElementsToModal(view);
   }
 
   requestAnimationFrame(managmentLoop);
 });
 
+// history state temporário
+history.pushState({ view: '[]' }, '');
+
+window.addEventListener('popstate', (event) => {
+  const view = context.currentView;
+
+  history.pushState({ view: view.viewName }, '');
+
+  /**
+   * @note João, aqui tem um questão interessante, poderia vincular o 'back press' a uma ação automática
+   * de voltar para view anterior e permitir customizar isso via o método abaixo, porém, por hora parece melhor
+   * não fazer nada no 'back press' e deixar cada view implementar sua ação se quiser. Me parece que na maioria dos casos
+   * não vamos fazer nada no 'back press'.
+   */
+  view.onBackPressed();
+});

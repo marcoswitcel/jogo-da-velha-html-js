@@ -39,4 +39,9 @@ export class View {
   query(selector) {
     return Array.from(this.rootElement.querySelectorAll(selector));
   }
+
+  /**
+   * @return {void}
+   */
+  onBackPressed() {}
 }
