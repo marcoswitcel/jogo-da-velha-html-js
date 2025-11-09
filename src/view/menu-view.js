@@ -19,4 +19,8 @@ export class MenuView extends View {
       this.ctx.queueToChange(new ConfigView(this.ctx));
     });
   }
+
+  onBackPressed() {
+    return false;
+  }
 }

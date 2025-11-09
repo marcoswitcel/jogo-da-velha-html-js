@@ -180,5 +180,7 @@ export class InGameView extends View {
         },
       });
     }
+    
+    return true;
   }
 }

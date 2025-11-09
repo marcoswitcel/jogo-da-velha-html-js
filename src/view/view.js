@@ -41,7 +41,9 @@ export class View {
   }
 
   /**
-   * @return {void}
+   * @return {boolean} retorna true para previnir o pop do state e o fechamento da página caso seja o último state
    */
-  onBackPressed() {}
+  onBackPressed() {
+    return true;
+  }
 }

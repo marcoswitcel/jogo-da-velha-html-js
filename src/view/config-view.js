@@ -40,5 +40,6 @@ export class ConfigView extends View {
 
   onBackPressed() {
     this.ctx.queueToChange(new MenuView(this.ctx));
+    return true;
   }
 }
