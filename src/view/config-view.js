@@ -1,4 +1,5 @@
 import { getById } from '../utils.js';
+import { version } from '../version.js';
 import { MenuView } from './menu-view.js';
 import { View } from './view.js';
 
@@ -13,6 +14,7 @@ export class ConfigView extends View {
     super('app-view-config', getById('app-view-config'), ctx, 'Configurações');
     // @ts-expect-error
     this.themeSelectElement = this.query('#theme-mode')[0];
+    this.query('#version')[0].innerText = version;
   }
 
   setup() {
