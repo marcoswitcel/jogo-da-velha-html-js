@@ -11,6 +11,9 @@ echo "git checkout main"
 git checkout main
 echo $LINE
 
+echo "git push"
+git push
+
 echo "echo -e \"/* Gerado automaticamente */\nexport const version = \\\"$VERSION\\\";\" > src/version.js"
 echo -e "/* Gerado automaticamente */\nexport const version = \"$VERSION\";" > src/version.js
 
@@ -18,6 +21,9 @@ echo "git add src/version.js"
 git add src/version.js
 echo "git commit -m \"version number update\""
 git commit -m "version number update"
+
+echo "git push"
+git push
 
 echo "git checkout gh-pages"
 git checkout gh-pages
