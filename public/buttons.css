@@ -1,7 +1,7 @@
 
 .app-container .default-btn,
 .app-modal .default-btn {
-    padding: .9em 1.3em;
+    padding: .8em 1.1em;
     border: 2px solid var(--font-color);
     color: var(--font-color);
     width: auto;
