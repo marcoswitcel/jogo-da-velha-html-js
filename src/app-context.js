@@ -168,4 +168,15 @@ export class AppContext {
   isModalOpen() {
     return !this.rootModalElement.classList.contains('app-modal__hidden');
   }
+
+  updateTitle() {
+    const defaultPageTitle = 'Jogo da Velha';
+    const view = this.currentView;
+    
+    if (view.description) {
+      document.title = view.description;
+    } else {
+      document.title = defaultPageTitle;
+    }
+  }
 }

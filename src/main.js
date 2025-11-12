@@ -4,7 +4,6 @@ import { MenuView } from './view/menu-view.js';
 
 console.log('Olá mundo do "Jogo da Velha" em HTML');
 
-const defaultPageTitle = 'Jogo da Velha';
 const context = new AppContext(getById('app'), getById('app-modal'));
 
 context.loadConfig();
@@ -22,11 +21,7 @@ requestAnimationFrame(function managmentLoop() {
     context.currentView = view;
     view.setup();
 
-    if (view.description) {
-      document.title = view.description;
-    } else {
-      document.title = defaultPageTitle;
-    }
+    context.updateTitle();
 
     history.replaceState({ view: view.viewName }, '');
     context.attachElementsToContainer(view);
@@ -62,4 +57,7 @@ window.addEventListener('popstate', (event) => {
   if (view.onBackPressed()) {
     history.pushState({ view: view.viewName }, '');
   }
+
+  // @todo João, tá trocando o título da página e não voltando ao normal
+  context.updateTitle();
 });
