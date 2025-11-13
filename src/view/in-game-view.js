@@ -9,6 +9,9 @@ export class InGameView extends View {
    */
   playerMode;
 
+  /**
+   * @type {TicTacToe}
+   */
   ticTacToe;
 
   acceptingClicks = true;
@@ -113,12 +116,20 @@ export class InGameView extends View {
       let found = false;
       let i = 0, j = 0;
 
-      outer:
-      for (; i < 3; i++) {
-        for (; j < 3; j++) {
-          if (this.ticTacToe.grid[i][j] === '-') {
-            found = true;
-            break outer;
+      const finalMove = this.findFinalMoveIfAny();
+
+      if (finalMove) {
+        [ i, j ] = finalMove;
+        found = true;
+      } else {
+        // encontra primeira célula vazia
+        outer:
+        for (; i < 3; i++) {
+          for (; j < 3; j++) {
+            if (this.ticTacToe.grid[i][j] === '-') {
+              found = true;
+              break outer;
+            }
           }
         }
       }
@@ -137,7 +148,7 @@ export class InGameView extends View {
 
         this.unlockGridInput();
         this.processChoice();
-        
+
         return;
       }
 
@@ -145,6 +156,34 @@ export class InGameView extends View {
       console.table(this.ticTacToe.grid);
       
     }, 500 + Math.random() * 1000);
+  }
+
+  /**
+   * 
+   * @returns {false|number[]}
+   */
+  findFinalMoveIfAny() {
+    const grid = this.ticTacToe.grid;
+    const player = this.ctx.player;
+
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[i][j] === '-');
+        fromPlayer += Number(grid[i][j] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j] === '-') return [i, j];
+        }
+      }
+    }
+
+    // @todo João, terminar, usando checkForWin como referência
+
+    return false;
   }
 
   /**
