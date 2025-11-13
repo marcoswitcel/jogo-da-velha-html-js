@@ -110,25 +110,35 @@ export class InGameView extends View {
     this.updateplayerDisplay('[ decidindo ]');
 
     setTimeout(() => {
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-          if (this.ticTacToe.grid[i][j] === '-') {
-            this.ticTacToe.grid[i][j] = this.ctx.player;
-            const index = i * 3 + j;
-            console.assert(index < this.gridCellElements.length);
-            this.gridCellElements[index].innerText = this.ctx.player;
-            
-            // @todo João, refazer isso com uma classe de animação...
-            this.gridCellElements[index].classList.add('active');
-            setTimeout(() => {
-              this.gridCellElements[index].classList.remove('active');
-            }, 40);
+      let found = false;
+      let i = 0, j = 0;
 
-            this.unlockGridInput();
-            this.processChoice();
-            return;
+      outer:
+      for (; i < 3; i++) {
+        for (; j < 3; j++) {
+          if (this.ticTacToe.grid[i][j] === '-') {
+            found = true;
+            break outer;
           }
         }
+      }
+
+      if (found) {
+        this.ticTacToe.grid[i][j] = this.ctx.player;
+        const index = i * 3 + j;
+        console.assert(index < this.gridCellElements.length);
+        this.gridCellElements[index].innerText = this.ctx.player;
+        
+        // @todo João, refazer isso com uma classe de animação...
+        this.gridCellElements[index].classList.add('active');
+        setTimeout(() => {
+          this.gridCellElements[index].classList.remove('active');
+        }, 40);
+
+        this.unlockGridInput();
+        this.processChoice();
+        
+        return;
       }
 
       console.assert(false, "Não deveria ter passado por aqui sem nenhum espaço em branco na Grid. Avaliar");
