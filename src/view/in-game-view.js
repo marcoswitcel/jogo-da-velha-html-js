@@ -116,10 +116,12 @@ export class InGameView extends View {
       let found = false;
       let i = 0, j = 0;
 
-      let finalMove = this.findFinalMoveIfAny();
+      let finalMove = this.findFinalMoveIfAny(this.ctx.player);
 
+      // se não achou um movimento vitorioso para o jogador atual, busca de o oponente
+      // terá uma jogada vitoriosa disponível e tenta impedir
       if (!finalMove) {
-        finalMove = this.findCounterFinalMoveIfAny();
+        finalMove = this.findFinalMoveIfAny(this.ctx.getOtherPlayer());
       }
 
       if (finalMove) {
@@ -163,12 +165,12 @@ export class InGameView extends View {
   }
 
   /**
+   * @param {'X'|'O'} player
    * 
    * @returns {false|number[]}
    */
-  findFinalMoveIfAny() {
+  findFinalMoveIfAny(player) {
     const grid = this.ticTacToe.grid;
-    const player = this.ctx.player;
 
     for (let i = 0; i < 3; i++) {
       let empty = 0;
@@ -226,79 +228,7 @@ export class InGameView extends View {
 
       if (empty === 1 && fromPlayer === 2) {
         for (let i = 0; i < 3; i++) {
-          if (grid[i][2 - i] === '-') return [i, i];
-        }
-      }
-    }
-
-    return false;
-  }
-
-  /**
-   * 
-   * @returns {false|number[]}
-   */
-  findCounterFinalMoveIfAny() {
-    const grid = this.ticTacToe.grid;
-    const otherPlayer = this.ctx.player === 'O' ? 'X' : 'O';
-
-    for (let i = 0; i < 3; i++) {
-      let empty = 0;
-      let fromPlayer = 0;
-      for (let j = 0; j < 3; j++) {
-        empty += Number(grid[i][j] === '-');
-        fromPlayer += Number(grid[i][j] === otherPlayer);
-      }
-
-      if (empty === 1 && fromPlayer === 2) {
-        for (let j = 0; j < 3; j++) {
-          if (grid[i][j] === '-') return [i, j];
-        }
-      }
-    }
-
-    for (let i = 0; i < 3; i++) {
-      let empty = 0;
-      let fromPlayer = 0;
-      for (let j = 0; j < 3; j++) {
-        empty += Number(grid[j][i] === '-');
-        fromPlayer += Number(grid[j][i] === otherPlayer);
-      }
-
-      if (empty === 1 && fromPlayer === 2) {
-        for (let j = 0; j < 3; j++) {
-          if (grid[j][i] === '-') return [j, i];
-        }
-      }
-    }
-
-    // @todo joão, terminar de testar diagonais
-    {
-      let empty = 0;
-      let fromPlayer = 0;
-      for (let i = 0; i < 3; i++) {
-        empty += Number(grid[i][i] === '-');
-        fromPlayer += Number(grid[i][i] === otherPlayer);
-      }
-
-      if (empty === 1 && fromPlayer === 2) {
-        for (let i = 0; i < 3; i++) {
-          if (grid[i][i] === '-') return [i, i];
-        }
-      }
-    }
-
-    {
-      let empty = 0;
-      let fromPlayer = 0;
-      for (let i = 0; i < 3; i++) {
-        empty += Number(grid[i][2 - i] === '-');
-        fromPlayer += Number(grid[i][2 - i] === otherPlayer);
-      }
-
-      if (empty === 1 && fromPlayer === 2) {
-        for (let i = 0; i < 3; i++) {
-          if (grid[i][2 - i] === '-') return [i, i];
+          if (grid[i][2 - i] === '-') return [i, 2 - i];
         }
       }
     }

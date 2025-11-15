@@ -52,6 +52,10 @@ export class AppContext {
     this.rootModalElement = rootModalElement;
   }
 
+  getOtherPlayer() {
+    return this.player === 'X' ? 'O' : 'X';
+  }
+
   loadConfig() {
     try {
       const loadedConfig = JSON.parse(localStorage.getItem('app.config'));
