@@ -116,12 +116,15 @@ export class InGameView extends View {
       let found = false;
       let i = 0, j = 0;
 
-      const finalMove = this.findFinalMoveIfAny();
+      let finalMove = this.findFinalMoveIfAny();
+
+      if (!finalMove) {
+        finalMove = this.findCounterFinalMoveIfAny();
+      }
 
       if (finalMove) {
         [ i, j ] = finalMove;
         found = true;
-        console.log('final')
       } else {
         // encontra primeira célula vazia
         outer:
@@ -219,6 +222,78 @@ export class InGameView extends View {
       for (let i = 0; i < 3; i++) {
         empty += Number(grid[i][2 - i] === '-');
         fromPlayer += Number(grid[i][2 - i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][2 - i] === '-') return [i, i];
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * 
+   * @returns {false|number[]}
+   */
+  findCounterFinalMoveIfAny() {
+    const grid = this.ticTacToe.grid;
+    const otherPlayer = this.ctx.player === 'O' ? 'X' : 'O';
+
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[i][j] === '-');
+        fromPlayer += Number(grid[i][j] === otherPlayer);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j] === '-') return [i, j];
+        }
+      }
+    }
+
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[j][i] === '-');
+        fromPlayer += Number(grid[j][i] === otherPlayer);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[j][i] === '-') return [j, i];
+        }
+      }
+    }
+
+    // @todo joão, terminar de testar diagonais
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][i] === '-');
+        fromPlayer += Number(grid[i][i] === otherPlayer);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][i] === '-') return [i, i];
+        }
+      }
+    }
+
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][2 - i] === '-');
+        fromPlayer += Number(grid[i][2 - i] === otherPlayer);
       }
 
       if (empty === 1 && fromPlayer === 2) {
