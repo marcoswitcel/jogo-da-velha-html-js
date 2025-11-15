@@ -34,4 +34,22 @@ export class TicTacToe {
     }
     return true;
   }
+  
+  countFilledSpots() {
+    let count = 0;
+
+    for (const row of this.grid) {
+      for (const col of row) {
+        if (col !== '-') {
+          count++;
+        }
+      }
+    }
+
+    return count;
+  }
+
+  isFirstMove() {
+    return this.countFilledSpots() === 0;
+  }
 }

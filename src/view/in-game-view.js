@@ -115,26 +115,35 @@ export class InGameView extends View {
     setTimeout(() => {
       let found = false;
       let i = 0, j = 0;
+      let filledSpots = this.ticTacToe.countFilledSpots();
 
-      let finalMove = this.findFinalMoveIfAny(this.ctx.player);
-
-      // se não achou um movimento vitorioso para o jogador atual, busca de o oponente
-      // terá uma jogada vitoriosa disponível e tenta impedir
-      if (!finalMove) {
-        finalMove = this.findFinalMoveIfAny(this.ctx.getOtherPlayer());
-      }
-
-      if (finalMove) {
-        [ i, j ] = finalMove;
+      // primeiro movimento
+      if (filledSpots === 0) {
         found = true;
+        // @note João, por hora fixo, mas seria legal pegar alguma das quatro arestas de forma aleatória
+        [i, j] = [2, 0];
+        console.log(1);
       } else {
-        // encontra primeira célula vazia
-        outer:
-        for (i = 0; i < 3; i++) {
-          for (j = 0; j < 3; j++) {
-            if (this.ticTacToe.grid[i][j] === '-') {
-              found = true;
-              break outer;
+        let finalMove = this.findFinalMoveIfAny(this.ctx.player);
+  
+        // se não achou um movimento vitorioso para o jogador atual, busca de o oponente
+        // terá uma jogada vitoriosa disponível e tenta impedir
+        if (!finalMove) {
+          finalMove = this.findFinalMoveIfAny(this.ctx.getOtherPlayer());
+        }
+  
+        if (finalMove) {
+          [ i, j ] = finalMove;
+          found = true;
+        } else {
+          // encontra primeira célula vazia
+          outer:
+          for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+              if (this.ticTacToe.grid[i][j] === '-') {
+                found = true;
+                break outer;
+              }
             }
           }
         }
