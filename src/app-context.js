@@ -1,5 +1,9 @@
+import { appendThemColor, clearThemeColor } from './utils.js';
 import { ConfirmAlertView } from './view/confirm-alert-view.js';
 import { View } from './view/view.js';
+
+const DARK_COLOR = '#333';
+const LIGHT_COLOR = 'white';
 
 export class AppContext {
   /**
@@ -90,6 +94,8 @@ export class AppContext {
   applyTheme() {
     const theme = this.config.theme;
 
+    clearThemeColor();
+
     if (theme === 'Dark') {
       // força "modo escuro" com com a classe 'dark-mode-on'
       this.rootElement.classList.add('dark-mode-on')
@@ -97,6 +103,8 @@ export class AppContext {
       // modal
       this.rootModalElement.classList.add('dark-mode-on')
       this.rootModalElement.classList.remove('system-preferences-theme');
+      // theme color
+      appendThemColor(DARK_COLOR);
     } else if (theme === 'Inherit') {
       // força "herdar do sistema" com com a classe 'system-preferences-theme', esta classe depende de estar
       // ativado o "modo escuro" para aplicar o tema do "modo escuro"
@@ -105,6 +113,9 @@ export class AppContext {
       // modal
       this.rootModalElement.classList.add('system-preferences-theme');
       this.rootModalElement.classList.remove('dark-mode-on')
+      // theme color
+      appendThemColor(LIGHT_COLOR, '(prefers-color-scheme: light)');
+      appendThemColor(DARK_COLOR, '(prefers-color-scheme: dark)');
     } else if (theme === 'Light')  {
       // O padrão é o "modo claro"
       this.rootElement.classList.remove('dark-mode-on');
@@ -112,6 +123,8 @@ export class AppContext {
       // modal
       this.rootModalElement.classList.remove('dark-mode-on');
       this.rootModalElement.classList.remove('system-preferences-theme');
+      // theme color
+      appendThemColor(LIGHT_COLOR);
     }
   }
 
