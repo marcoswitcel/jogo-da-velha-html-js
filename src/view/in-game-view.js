@@ -122,7 +122,18 @@ export class InGameView extends View {
         found = true;
         // @note João, por hora fixo, mas seria legal pegar alguma das quatro arestas de forma aleatória
         [i, j] = [2, 0];
-        console.log(1);
+      }  else if (filledSpots === 1) {
+        found = true;
+        if (this.ticTacToe.grid[1][1] === '-') {
+          [i, j] = [1, 1];
+        } else {
+          const coords = this.ticTacToe.findEmptyBorder();
+          if (coords) {
+            [i, j] = coords;
+          } else {
+            console.assert(false, "Não deveria acontecer, pois só deveria ter um espaço preenchido");
+          }
+        }
       } else {
         let finalMove = this.findFinalMoveIfAny(this.ctx.player);
   
