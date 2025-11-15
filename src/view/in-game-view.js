@@ -9,6 +9,9 @@ export class InGameView extends View {
    */
   playerMode;
 
+  /**
+   * @type {TicTacToe}
+   */
   ticTacToe;
 
   acceptingClicks = true;
@@ -110,31 +113,147 @@ export class InGameView extends View {
     this.updateplayerDisplay('[ decidindo ]');
 
     setTimeout(() => {
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-          if (this.ticTacToe.grid[i][j] === '-') {
-            this.ticTacToe.grid[i][j] = this.ctx.player;
-            const index = i * 3 + j;
-            console.assert(index < this.gridCellElements.length);
-            this.gridCellElements[index].innerText = this.ctx.player;
-            
-            // @todo João, refazer isso com uma classe de animação...
-            this.gridCellElements[index].classList.add('active');
-            setTimeout(() => {
-              this.gridCellElements[index].classList.remove('active');
-            }, 40);
+      let found = false;
+      let i = 0, j = 0;
+      let filledSpots = this.ticTacToe.countFilledSpots();
 
-            this.unlockGridInput();
-            this.processChoice();
-            return;
+      // primeiro movimento
+      if (filledSpots === 0) {
+        found = true;
+        // @note João, por hora fixo, mas seria legal pegar alguma das quatro arestas de forma aleatória
+        [i, j] = [2, 0];
+      }  else if (filledSpots === 1) {
+        found = true;
+        if (this.ticTacToe.grid[1][1] === '-') {
+          [i, j] = [1, 1];
+        } else {
+          const coords = this.ticTacToe.findEmptyBorder();
+          if (coords) {
+            [i, j] = coords;
+          } else {
+            console.assert(false, "Não deveria acontecer, pois só deveria ter um espaço preenchido");
           }
         }
+      } else {
+        let finalMove = this.findFinalMoveIfAny(this.ctx.player);
+  
+        // se não achou um movimento vitorioso para o jogador atual, busca de o oponente
+        // terá uma jogada vitoriosa disponível e tenta impedir
+        if (!finalMove) {
+          finalMove = this.findFinalMoveIfAny(this.ctx.getOtherPlayer());
+        }
+  
+        if (finalMove) {
+          [ i, j ] = finalMove;
+          found = true;
+        } else {
+          // encontra primeira célula vazia
+          outer:
+          for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+              if (this.ticTacToe.grid[i][j] === '-') {
+                found = true;
+                break outer;
+              }
+            }
+          }
+        }
+      }
+
+      if (found) {
+        this.ticTacToe.grid[i][j] = this.ctx.player;
+        const index = i * 3 + j;
+        console.assert(index < this.gridCellElements.length);
+        this.gridCellElements[index].innerText = this.ctx.player;
+        
+        // @todo João, refazer isso com uma classe de animação...
+        this.gridCellElements[index].classList.add('active');
+        setTimeout(() => {
+          this.gridCellElements[index].classList.remove('active');
+        }, 40);
+
+        this.unlockGridInput();
+        this.processChoice();
+
+        return;
       }
 
       console.assert(false, "Não deveria ter passado por aqui sem nenhum espaço em branco na Grid. Avaliar");
       console.table(this.ticTacToe.grid);
       
     }, 500 + Math.random() * 1000);
+  }
+
+  /**
+   * @param {'X'|'O'} player
+   * 
+   * @returns {false|number[]}
+   */
+  findFinalMoveIfAny(player) {
+    const grid = this.ticTacToe.grid;
+
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[i][j] === '-');
+        fromPlayer += Number(grid[i][j] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j] === '-') return [i, j];
+        }
+      }
+    }
+
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[j][i] === '-');
+        fromPlayer += Number(grid[j][i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[j][i] === '-') return [j, i];
+        }
+      }
+    }
+
+    // @todo joão, terminar de testar diagonais
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][i] === '-');
+        fromPlayer += Number(grid[i][i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][i] === '-') return [i, i];
+        }
+      }
+    }
+
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][2 - i] === '-');
+        fromPlayer += Number(grid[i][2 - i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][2 - i] === '-') return [i, 2 - i];
+        }
+      }
+    }
+
+    return false;
   }
 
   /**

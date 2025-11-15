@@ -34,4 +34,46 @@ export class TicTacToe {
     }
     return true;
   }
+  
+  countFilledSpots() {
+    let count = 0;
+
+    for (const row of this.grid) {
+      for (const col of row) {
+        if (col !== '-') {
+          count++;
+        }
+      }
+    }
+
+    return count;
+  }
+
+  isFirstMove() {
+    return this.countFilledSpots() === 0;
+  }
+
+  findEmptyBorder(findOpositeIfAny = false) {
+    const grid = this.grid;
+    const borders = [[0, 0], [0, 2], [2, 0], [2, 2]];
+
+    if (findOpositeIfAny) {
+      for (const border of borders) {
+        let [ i, j ] = border;
+        if (grid[i][j] !== '-') {
+          i = (i == 0) ? 2 : 0;
+          j = (j == 0) ? 2 : 0;
+          console.log(2)
+          return [ i, j ]
+        };
+      }
+    }
+
+    for (const border of borders) {
+      const [ i, j ] = border;
+      if (grid[i][j] === '-') return border;
+    }
+
+    return false;
+  }
 }

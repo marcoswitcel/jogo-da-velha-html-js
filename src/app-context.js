@@ -23,6 +23,7 @@ export class AppContext {
   currentModalView = null;
 
   /**
+   * @todo joão, analisar se devo mover para a classe `TicTacToe`
    * @type {'O'|'X'}
    */
   player = 'O';
@@ -50,6 +51,14 @@ export class AppContext {
   constructor(rootElement, rootModalElement) {
     this.rootElement = rootElement;
     this.rootModalElement = rootModalElement;
+  }
+
+  /**
+   * @todo joão, analisar se devo mover para a classe `TicTacToe`
+   * @returns 
+   */
+  getOtherPlayer() {
+    return this.player === 'X' ? 'O' : 'X';
   }
 
   loadConfig() {
@@ -106,6 +115,9 @@ export class AppContext {
     }
   }
 
+  /**
+   * @todo joão, analisar se devo mover para a classe `TicTacToe`
+   */
   resetPlayState() {
     this.player = 'O';
   }
@@ -151,6 +163,9 @@ export class AppContext {
     }
   }
 
+  /**
+   * @todo joão, analisar se devo mover para a classe `TicTacToe`
+   */
   changePlayer() {
     this.player = (this.player === 'O') ? 'X' : 'O';
   }
@@ -167,5 +182,16 @@ export class AppContext {
 
   isModalOpen() {
     return !this.rootModalElement.classList.contains('app-modal__hidden');
+  }
+
+  updateTitle() {
+    const defaultPageTitle = 'Jogo da Velha';
+    const view = this.currentView;
+    
+    if (view.description) {
+      document.title = view.description;
+    } else {
+      document.title = defaultPageTitle;
+    }
   }
 }

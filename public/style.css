@@ -10,6 +10,7 @@ checar qual abordagem usar...
 :root {
     --bg-color: white;
     --font-color: #333;
+    --font-size: 16px;
     --font-size-title: 4em;
 }
 
@@ -37,7 +38,7 @@ html, body {
     font-family: serif;
     user-select: none;
     color: var(--font-color);
-    font-size: 16px;
+    font-size: var(--font-size);
 }
 
 .root {
@@ -130,8 +131,15 @@ html, body {
     background-color: var(--bg-color);
 }
 
-.app-view-config p {
+.app-view-config .description {
     color: var(--font-color);
+    margin: var(--font-size) 0 .1em;
+}
+
+.app-view-config .version {
+    margin: 0;
+    font-size: .9em;
+    margin: 0 0 var(--font-size);
 }
 
 .app-view-config .app-screen {
