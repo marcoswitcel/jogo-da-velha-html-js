@@ -63,7 +63,6 @@ export class TicTacToe {
         if (grid[i][j] !== '-') {
           i = (i == 0) ? 2 : 0;
           j = (j == 0) ? 2 : 0;
-          console.log(2)
           return [ i, j ]
         };
       }
