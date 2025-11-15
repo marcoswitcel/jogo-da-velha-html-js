@@ -121,11 +121,12 @@ export class InGameView extends View {
       if (finalMove) {
         [ i, j ] = finalMove;
         found = true;
+        console.log('final')
       } else {
         // encontra primeira célula vazia
         outer:
-        for (; i < 3; i++) {
-          for (; j < 3; j++) {
+        for (i = 0; i < 3; i++) {
+          for (j = 0; j < 3; j++) {
             if (this.ticTacToe.grid[i][j] === '-') {
               found = true;
               break outer;
@@ -181,7 +182,51 @@ export class InGameView extends View {
       }
     }
 
-    // @todo João, terminar, usando checkForWin como referência
+    for (let i = 0; i < 3; i++) {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let j = 0; j < 3; j++) {
+        empty += Number(grid[j][i] === '-');
+        fromPlayer += Number(grid[j][i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[j][i] === '-') return [j, i];
+        }
+      }
+    }
+
+    // @todo joão, terminar de testar diagonais
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][i] === '-');
+        fromPlayer += Number(grid[i][i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][i] === '-') return [i, i];
+        }
+      }
+    }
+
+    {
+      let empty = 0;
+      let fromPlayer = 0;
+      for (let i = 0; i < 3; i++) {
+        empty += Number(grid[i][2 - i] === '-');
+        fromPlayer += Number(grid[i][2 - i] === player);
+      }
+
+      if (empty === 1 && fromPlayer === 2) {
+        for (let i = 0; i < 3; i++) {
+          if (grid[i][2 - i] === '-') return [i, i];
+        }
+      }
+    }
 
     return false;
   }
