@@ -138,6 +138,7 @@ html, body {
 
 .app-view-config .version {
     margin: 0;
+    color: var(--font-color);
     font-size: .9em;
     margin: 0 0 var(--font-size);
 }

@@ -36,7 +36,7 @@ export class InGameView extends View {
   }
 
   setup() {
-    this.updateplayerDisplay();
+    this.updatePlayerDisplay();
 
     this.ctx.resetPlayState();
     
@@ -102,15 +102,19 @@ export class InGameView extends View {
   /**
    * @private
    */
-  updateplayerDisplay(message = '') {
-    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player} ${message}`;
+  updatePlayerDisplay(message = '') {
+    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player}` + ((message) ? `<br> ${message}` : '');
     this.playerDisplay.dataset.turn = this.ctx.player;
+  }
+
+  clearPlayerDisplay() {
+    this.playerDisplay.innerHTML = '';
   }
 
   makePlayer2Choice() {
     this.lockGridInput();
 
-    this.updateplayerDisplay('[ decidindo ]');
+    this.updatePlayerDisplay('decidindo...');
 
     setTimeout(() => {
       let found = false;
@@ -260,6 +264,8 @@ export class InGameView extends View {
    * @private
    */
   processChoice() {
+    this.clearPlayerDisplay();
+
     if (this.ticTacToe.checkForWin()) {
       this.ctx.confirm(`Vitória do jogador: ${this.ctx.player}`, 'Deseja jogar novamente?', {
         confirm: () => {
@@ -280,7 +286,7 @@ export class InGameView extends View {
       });
     } else {
       this.ctx.changePlayer();
-      this.updateplayerDisplay();
+      this.updatePlayerDisplay();
 
       if (this.playerMode == 2 && this.ctx.player === 'X') {
         this.makePlayer2Choice();
