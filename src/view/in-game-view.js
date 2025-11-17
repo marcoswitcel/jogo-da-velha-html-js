@@ -74,15 +74,19 @@ export class InGameView extends View {
    * @param {KeyboardEvent} e 
    */
   handleKeyUp = (e) => {
-    if (e.code === 'Escape' && !this.ctx.isModalOpen()) {
-      this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
-        confirmDescription: 'Retomar Partida',
-        declineDescription: 'Voltar ao Menu',
-        confirm: () => {},
-        decline: () => {
-          this.ctx.queueToChange(new MenuView(this.ctx));
-        },
-      });
+    if (e.code === 'Escape') {
+      if (this.ctx.isModalOpen()) {
+        this.ctx.hiddeModal();
+      } else {
+        this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
+          confirmDescription: 'Retomar Partida',
+          declineDescription: 'Voltar ao Menu',
+          confirm: () => {},
+          decline: () => {
+            this.ctx.queueToChange(new MenuView(this.ctx));
+          },
+        });
+      }
     }
   }
 

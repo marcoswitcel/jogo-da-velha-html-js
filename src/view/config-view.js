@@ -35,13 +35,29 @@ export class ConfigView extends View {
       }
     });
 
+    document.addEventListener('keyup', this.handleKeyUp);
+
     this.query('#btn-action-menu')[0].addEventListener('click', e => {
       this.ctx.queueToChange(new MenuView(this.ctx));
     });
   }
 
+  /**
+   * 
+   * @param {KeyboardEvent} e 
+   */
+  handleKeyUp = (e) => {
+    if (e.code === 'Escape') {
+      this.ctx.queueToChange(new MenuView(this.ctx));
+    }
+  }
+
   onBackPressed() {
     this.ctx.queueToChange(new MenuView(this.ctx));
     return true;
+  }
+
+  cleanup() {
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 }
