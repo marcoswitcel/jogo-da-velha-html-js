@@ -13,7 +13,7 @@
     border-radius: .9em;
     font-size: 1em;
     cursor: pointer;
-    font-family: serif;
+    font-family: var(--font-family);
     transition: all .1s ease-out;
 }
 
