@@ -9,9 +9,10 @@ checar qual abordagem usar...
 
 :root {
     --bg-color: white;
-    --font-color: #333;
+    --font-color: #222;
     --font-size: 16px;
     --font-size-title: 4em;
+    --font-family: "Fredericka the Great", serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,6 +40,9 @@ html, body {
     user-select: none;
     color: var(--font-color);
     font-size: var(--font-size);
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-style: normal;
 }
 
 .root {
