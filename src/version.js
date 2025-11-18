@@ -1,2 +1,2 @@
 /* Gerado automaticamente */
-export const version = "2025.11.15-6";
+export const version = "2025.11.17-1";
