@@ -9,10 +9,11 @@ checar qual abordagem usar...
 
 :root {
     --bg-color: white;
-    --font-color: #222;
+    --font-color: #333;
     --font-size: 16px;
     --font-size-title: 4em;
-    --font-family: "Fredericka the Great", serif;
+    --font-family-title: "Fredericka the Great", serif;
+    --font-family: "Kalam", cursive;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -74,6 +75,7 @@ html, body {
     color: var(--font-color);
     overflow: hidden;
     line-height: 1.3em;
+    font-family: var(--font-family-title);
 }
 
 .grid__cell:hover {
@@ -127,6 +129,7 @@ html, body {
 
 .app-view-menu .title {
     color: var(--font-color);
+    font-family: var(--font-family-title);
     font-size: var(--font-size-title);
     margin: 0 0 .35em;
 }
@@ -158,6 +161,7 @@ html, body {
 
 .app-view-config .title {
     color: var(--font-color);
+    font-family: var(--font-family-title);
     font-size: var(--font-size-title);
 }
 
@@ -173,7 +177,7 @@ html, body {
     border-radius: .9em;
     font-size: 1em;
     cursor: pointer;
-    font-family: serif;
+    font-family: var(--font-family);
     transition: all .1s ease-out;
 }
 
@@ -229,6 +233,7 @@ html, body {
 
 .app-modal-confirm-alert .confirm-box .title {
     text-align: center;
+    font-family: var(--font-family-title);
 }
 
 .app-modal-confirm-alert .confirm-box .description {
