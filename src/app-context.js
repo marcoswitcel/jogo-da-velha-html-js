@@ -5,6 +5,15 @@ import { View } from './view/view.js';
 const DARK_COLOR = '#333';
 const LIGHT_COLOR = 'white';
 
+/**
+ * @typedef {{ theme: 'Dark' | 'Light' | 'Inherit', lang: 'pt-BR' | 'en-USA' }} ThemeConfig
+ */
+
+/**
+ * @type {ThemeConfig}
+ */
+const DEFAULT_CONFIG = { theme: 'Light', lang: 'pt-BR' };
+
 export class AppContext {
   /**
    * @type {View[]}
@@ -43,7 +52,7 @@ export class AppContext {
   rootModalElement;
 
   /**
-   * @type {{ theme: 'Dark' | 'Light' | 'Inherit' } | null}
+   * @type {ThemeConfig | null}
    */
   config = null;
 
@@ -68,11 +77,12 @@ export class AppContext {
   loadConfig() {
     try {
       const loadedConfig = JSON.parse(localStorage.getItem('app.config'));
-      const theme = (loadedConfig === null) ? 'Inherit' :  loadedConfig.theme;
+      const theme = (loadedConfig === null) ? DEFAULT_CONFIG.theme :  loadedConfig.theme;
+      const lang = (loadedConfig === null) ? DEFAULT_CONFIG.lang :  loadedConfig.lang;
   
       // @note João, pora hora sanitizando assim...
       if (theme && 'Dark,Light,Inherit'.indexOf(theme) != -1) {
-        this.config = { theme: theme };
+        this.config = { theme: theme, lang: lang };
       } else {
         console.warn(`Valor inválido para tema: ${theme}`);
       }
@@ -81,7 +91,7 @@ export class AppContext {
     }
 
     if (this.config === null) {
-      this.config = { theme: 'Light' };
+      this.config = DEFAULT_CONFIG;
     }
   }
 
