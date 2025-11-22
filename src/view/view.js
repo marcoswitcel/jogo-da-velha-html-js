@@ -20,6 +20,13 @@ export class View {
    */
   description;
 
+  /**
+   * 
+   * @param {string} name 
+   * @param {HTMLTemplateElement} template 
+   * @param {AppContext} ctx 
+   * @param {string|null} description 
+   */
   constructor(name, template, ctx, description = null) {
     this.viewName = name;
     this.template = template;

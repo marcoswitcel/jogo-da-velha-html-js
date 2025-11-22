@@ -11,12 +11,13 @@ export class Localization {
   /**
    * 
    * @param {HTMLTemplateElement} template 
-   * @returns {Node}
+   * @returns {HTMLElement}
    */
   makeRootElementFromTemplate(template) {
     this.templateElement.innerHTML = template.innerHTML;
     // @todo João, implementar o replace do {i18n:titutlo}
 
+    // @ts-expect-error
     return this.templateElement.content.cloneNode(true);
   }
 }
