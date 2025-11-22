@@ -9,9 +9,12 @@ const pattern = /\{i18n:([^}]+)\}/g;
 
 const localization = {
   page: {
+    menu: {
+      title: { 'pt-BR': 'Jogo da Velha', 'en-USA': 'Tic Tac Toe' },
+    },
     config: {
       title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
-    }
+    },
   }
 };
 
