@@ -51,19 +51,32 @@ export class Localization {
 
   /**
    * 
+   * @param {string} propertyName 
+   * @param {string} defaultValue 
+   * @returns {string}
+   */
+  lookupProperty(propertyName, defaultValue = '') {
+    const name = propertyName + '.' + this.lang;
+    const [ ok, value ] = dotAccessor(localization, name);
+
+    console.assert(ok, `propriedade: '${name}'`)
+      
+    // default é string vazia por hora
+    return ok ? value : defaultValue;
+  }
+
+  /**
+   * 
    * @param {HTMLTemplateElement} template 
    * @returns {HTMLElement}
    */
   makeRootElementFromTemplate(template) {
     let html = template.innerHTML;
     
-    html = html.replaceAll(pattern, (fullMatch, groupMatch) => {
-      const name = groupMatch + '.' + this.lang;
-      const [ ok, value ] = dotAccessor(localization, name);
+    html = html.replaceAll(pattern, (fullMatch, groupMatch0) => {
+      const propertyName = groupMatch0;
 
-      console.assert(ok, `propriedade: '${name}'`)
-      
-      return ok ? value : '';
+      return this.lookupProperty(propertyName);
     });
 
     this.templateElement.innerHTML = html;
