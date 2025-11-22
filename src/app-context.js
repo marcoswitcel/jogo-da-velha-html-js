@@ -1,3 +1,4 @@
+import { Localization } from './localization.js';
 import { appendThemColor, clearThemeColor } from './utils.js';
 import { ConfirmAlertView } from './view/confirm-alert-view.js';
 import { View } from './view/view.js';
@@ -57,6 +58,11 @@ export class AppContext {
   config = null;
 
   /**
+   * @type {Localization}
+   */
+  localization;
+
+  /**
    * 
    * @param {HTMLElement} rootElement 
    * @param {HTMLElement} rootModalElement 
@@ -64,6 +70,7 @@ export class AppContext {
   constructor(rootElement, rootModalElement) {
     this.rootElement = rootElement;
     this.rootModalElement = rootModalElement;
+    this.localization = new Localization();
   }
 
   /**
@@ -83,6 +90,7 @@ export class AppContext {
       // @note João, pora hora sanitizando assim...
       if (theme && 'Dark,Light,Inherit'.indexOf(theme) != -1) {
         this.config = { theme: theme, lang: lang };
+        this.localization.lang = lang;
       } else {
         console.warn(`Valor inválido para tema: ${theme}`);
       }
