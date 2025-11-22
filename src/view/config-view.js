@@ -9,17 +9,24 @@ export class ConfigView extends View {
    * @type {HTMLSelectElement}
    */
   themeSelectElement;
+  /**
+   * @type {HTMLSelectElement}
+   */
+  langSelectElement;
 
   constructor(ctx) {
     super('app-view-config', getById('app-view-config'), ctx, 'Configurações');
     // @ts-expect-error
     this.themeSelectElement = this.query('#theme-mode')[0];
+    // @ts-expect-error
+    this.langSelectElement = this.query('#lang-select')[0];
     this.query('#version')[0].innerText = version;
   }
 
   setup() {
     // setando a opção carregada
     this.themeSelectElement.value = this.ctx.config.theme;
+    this.langSelectElement.value = this.ctx.config.lang;
 
     this.themeSelectElement.addEventListener('change', e => {
       /**
@@ -30,6 +37,20 @@ export class ConfigView extends View {
       
       if (theme === 'Dark' || theme === 'Light' || theme === 'Inherit') {
         this.ctx.config.theme = theme;
+        this.ctx.saveConfig();
+        this.ctx.applyTheme();
+      }
+    });
+
+    this.langSelectElement.addEventListener('change', e => {
+      /**
+       * @type {HTMLSelectElement}
+       */ //@ts-ignore
+      const target = e.target; 
+      const lang = target.value;
+      
+      if (lang === 'pt-BR' || lang === 'en-USA') {
+        this.ctx.config.lang = lang;
         this.ctx.saveConfig();
         this.ctx.applyTheme();
       }
