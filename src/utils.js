@@ -31,3 +31,28 @@ export const appendThemColor = (color, media = null) => {
   return meta;
 }
 
+/**
+ * 
+ * @param {any} obj 
+ * @param {string} accessPattern 
+ * @returns {[boolean, any]}
+ */
+export const dotAccessor = (obj, accessPattern) => {
+  const keys = accessPattern.split('.');
+
+  let validPath = true;
+  let valueObj = obj;
+  
+  for (const key of keys) {
+    if (valueObj) {
+      valueObj = valueObj[key];
+    } else {
+      validPath = false;
+      break;
+    }
+  }
+
+  return [validPath, valueObj];
+};
+
+

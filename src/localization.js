@@ -1,3 +1,4 @@
+import { dotAccessor } from './utils.js';
 
 /**
  * Regex resposável por identificar partes.
@@ -18,30 +19,14 @@ const localization = {
   }
 };
 
-/**
- * 
- * @param {any} obj 
- * @param {string} accessPattern 
- * @returns {[boolean, any]}
- */
-const dotAccessor = (obj, accessPattern) => {
-  const keys = accessPattern.split('.');
-
-  let validPath = true;
-  let valueObj = obj;
-  for (const key of keys) {
-    if (valueObj) {
-      valueObj = valueObj[key];
-    } else {
-      validPath = false;
-      break;
-    }
-  }
-  return [validPath, valueObj];
-};
-
 export class Localization {
+  /**
+   * @type {'pt-BR'|'en-USA'}
+   */
   lang = 'pt-BR';
+  /**
+   * @type {HTMLTemplateElement}
+   */
   templateElement;
 
   constructor() {
@@ -81,7 +66,7 @@ export class Localization {
 
     this.templateElement.innerHTML = html;
     
-    // @ts-expect-error
+    // @ts-expect-error nesse caso sei que é um HTMLElement
     return this.templateElement.content.cloneNode(true);
   }
 }
