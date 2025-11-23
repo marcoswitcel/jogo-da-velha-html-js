@@ -107,7 +107,7 @@ export class InGameView extends View {
    * @private
    */
   updatePlayerDisplay(message = '') {
-    this.playerDisplay.innerHTML = `Jogador: ${this.ctx.player}` + ((message) ? `<br> ${message}` : '');
+    this.playerDisplay.innerHTML = `${this.ctx.localization.lookupProperty('page.in-game.player')}: ${this.ctx.player}` + ((message) ? `<br> ${message}` : '');
     this.playerDisplay.dataset.turn = this.ctx.player;
   }
 
@@ -118,7 +118,7 @@ export class InGameView extends View {
   makePlayer2Choice() {
     this.lockGridInput();
 
-    this.updatePlayerDisplay('decidindo...');
+    this.updatePlayerDisplay(this.ctx.localization.lookupProperty('page.in-game.deciding'));
 
     setTimeout(() => {
       let found = false;

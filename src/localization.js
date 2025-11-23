@@ -12,6 +12,13 @@ const localization = {
   page: {
     menu: {
       title: { 'pt-BR': 'Jogo da Velha', 'en-USA': 'Tic Tac Toe' },
+      player1: { 'pt-BR': '1 jogador', 'en-USA': '1 player' },
+      player2: { 'pt-BR': '2 jogadores', 'en-USA': '2 player\'s' },
+      configurations: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
+    },
+    'in-game': {
+      player: { 'pt-BR': 'Jogador', 'en-USA': 'Player' },
+      deciding: { 'pt-BR': 'Decidindo...', 'en-USA': 'Deciding...' },
     },
     config: {
       title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
@@ -35,6 +42,8 @@ export class Localization {
   }
 
   /**
+   * 
+   * @note João, talvez para exercício poderia fazer uma versão que permite preprocessar a mensagem pra incluir um argumento
    * 
    * @param {string} propertyName 
    * @param {string} defaultValue 
