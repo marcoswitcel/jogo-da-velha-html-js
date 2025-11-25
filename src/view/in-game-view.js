@@ -80,6 +80,7 @@ export class InGameView extends View {
       } else {
         this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
           confirmDescription: 'Retomar Partida',
+          // @note João, usar a propriedade 'global.back_to_menu' aqui, assim que tiver uma pros outros textos
           declineDescription: 'Voltar ao Menu',
           confirm: () => {},
           decline: () => {

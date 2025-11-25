@@ -26,8 +26,8 @@
     <template id="app-view-config">
         <div class="app-screen">
             <h1 class="title">{i18n:page.config.title}</h1>
-            <p class="description">Configurações gerais do aplicativo</p>
-            <p class="version">(Versão: <span id="version"></span>)</p>
+            <p class="description">{i18n:page.config.description}</p>
+            <p class="version">({i18n:page.config.version}: <span id="version"></span>)</p>
             <select class="theme-mode-select" name="theme-mode" id="theme-mode">
                 <option value="Inherit">Usar preferências do sistema</option>
                 <option value="Dark">Usar Modo Escuro</option>
@@ -38,7 +38,7 @@
                 <option value="pt-BR">Interface em Português</option>
                 <option value="en-USA">Interface em Inglês</option>
             </select>
-            <button id="btn-action-menu" class="default-btn" type="button">Voltar ao Menu</button>
+            <button id="btn-action-menu" class="default-btn" type="button">{i18n:global.back_to_menu}</button>
         </div>
     </template>
     <template id="app-view-in-game">

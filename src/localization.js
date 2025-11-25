@@ -9,11 +9,14 @@ import { dotAccessor } from './utils.js';
 const pattern = /\{i18n:([^}]+)\}/g;
 
 const localization = {
+  global: {
+    back_to_menu: { 'pt-BR': 'Voltar ao Menu', 'en-USA': 'Back to Menu' },
+  },
   page: {
     menu: {
       title: { 'pt-BR': 'Jogo da Velha', 'en-USA': 'Tic Tac Toe' },
-      player1: { 'pt-BR': '1 jogador', 'en-USA': '1 player' },
-      player2: { 'pt-BR': '2 jogadores', 'en-USA': '2 player\'s' },
+      player1: { 'pt-BR': 'Dois Jogadores', 'en-USA': 'Two player\'s' },
+      player2: { 'pt-BR': 'Jogador vs. AI', 'en-USA': 'Player vs. AI' },
       configurations: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
     },
     'in-game': {
@@ -22,6 +25,8 @@ const localization = {
     },
     config: {
       title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
+      description: { 'pt-BR': 'Configurações gerais do aplicativo', 'en-USA': 'General applications settings' },
+      version: { 'pt-BR': 'Versão', 'en-USA': 'Version' },
     },
   }
 };
