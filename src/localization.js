@@ -19,7 +19,7 @@ const localization = {
       player2: { 'pt-BR': 'Jogador vs. AI', 'en-USA': 'Player vs. AI' },
       configurations: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
     },
-    'in-game': {
+    in_game: {
       player: { 'pt-BR': 'Jogador', 'en-USA': 'Player' },
       deciding: { 'pt-BR': 'Decidindo...', 'en-USA': 'Deciding...' },
     },
