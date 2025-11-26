@@ -11,6 +11,8 @@ const pattern = /\{i18n:([^}]+)\}/g;
 const localization = {
   global: {
     back_to_menu: { 'pt-BR': 'Voltar ao Menu', 'en-USA': 'Back to Menu' },
+    play_again: { 'pt-BR': 'Jogar Novamente', 'en-USA': 'Play Again' },
+    resume_match: { 'pt-BR': 'Retomar Partida', 'en-USA': 'Resume Match' },
   },
   page: {
     menu: {
@@ -54,7 +56,7 @@ export class Localization {
    * @param {string} defaultValue 
    * @returns {string}
    */
-  lookupProperty(propertyName, defaultValue = '') {
+  getTextLocale(propertyName, defaultValue = '') {
     const name = propertyName + '.' + this.lang;
     const [ ok, value ] = dotAccessor(localization, name);
 
@@ -75,7 +77,7 @@ export class Localization {
     html = html.replaceAll(pattern, (fullMatch, groupMatch0) => {
       const propertyName = groupMatch0;
 
-      return this.lookupProperty(propertyName);
+      return this.getTextLocale(propertyName);
     });
 
     this.templateElement.innerHTML = html;
