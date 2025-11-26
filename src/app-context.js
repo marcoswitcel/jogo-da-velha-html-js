@@ -82,6 +82,10 @@ export class AppContext {
   }
 
   loadConfig() {
+    // seta para o default
+    this.config = { ...DEFAULT_CONFIG };
+    this.localization.lang = this.config.lang;
+
     try {
       const loadedConfig = JSON.parse(localStorage.getItem('app.config'));
       const theme = (loadedConfig === null) ? DEFAULT_CONFIG.theme :  loadedConfig.theme;
@@ -89,17 +93,19 @@ export class AppContext {
   
       // @note João, pora hora sanitizando assim...
       if (theme && 'Dark,Light,Inherit'.indexOf(theme) != -1) {
-        this.config = { theme: theme, lang: lang };
-        this.localization.lang = lang;
+        this.config.theme = theme;
       } else {
         console.warn(`Valor inválido para tema: ${theme}`);
       }
+
+      if (lang && 'pt-BR,en-USA'.indexOf(lang) != -1) {
+        this.config.lang = lang;
+        this.localization.lang = lang;
+      } else {
+        console.warn(`Valor inválido para linguagem: ${lang}`);
+      }
     } catch (ex) {
       console.error(`Valor inválido para tema: ${localStorage.getItem('app.config')}\nStack a seguir:\n`, ex);
-    }
-
-    if (this.config === null) {
-      this.config = DEFAULT_CONFIG;
     }
   }
 
