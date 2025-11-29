@@ -108,7 +108,7 @@ export class InGameView extends View {
    * @private
    */
   updatePlayerDisplay(message = '') {
-    this.playerDisplay.innerHTML = `${this.ctx.localization.getTextLocale('page.in_game.player')}: ${this.ctx.player}` + ((message) ? `<br> ${message}` : '');
+    this.playerDisplay.innerHTML = `${this.ctx.i18n.getTextLocale('page.in_game.player')}: ${this.ctx.player}` + ((message) ? `<br> ${message}` : '');
     this.playerDisplay.dataset.turn = this.ctx.player;
   }
 
@@ -119,7 +119,7 @@ export class InGameView extends View {
   makePlayer2Choice() {
     this.lockGridInput();
 
-    this.updatePlayerDisplay(this.ctx.localization.getTextLocale('page.in_game.deciding'));
+    this.updatePlayerDisplay(this.ctx.i18n.getTextLocale('page.in_game.deciding'));
 
     setTimeout(() => {
       let found = false;

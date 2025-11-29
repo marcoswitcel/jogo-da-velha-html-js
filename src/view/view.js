@@ -32,7 +32,7 @@ export class View {
     this.template = template;
     // @todo João, considerar como cachear essa operação, por hora é feito do jeito lento mesmo
     // this.rootElement = template.content.cloneNode(true);
-    this.rootElement = ctx.localization.makeRootElementFromTemplate(template);
+    this.rootElement = ctx.i18n.makeRootElementFromTemplate(template);
     this.ctx = ctx;
     this.description = description;
   }

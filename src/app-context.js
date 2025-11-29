@@ -60,7 +60,7 @@ export class AppContext {
   /**
    * @type {Localization}
    */
-  localization;
+  i18n;
 
   /**
    * 
@@ -70,7 +70,7 @@ export class AppContext {
   constructor(rootElement, rootModalElement) {
     this.rootElement = rootElement;
     this.rootModalElement = rootModalElement;
-    this.localization = new Localization();
+    this.i18n = new Localization();
   }
 
   /**
@@ -84,7 +84,7 @@ export class AppContext {
   loadConfig() {
     // seta para o default
     this.config = { ...DEFAULT_CONFIG };
-    this.localization.lang = this.config.lang;
+    this.i18n.lang = this.config.lang;
 
     try {
       const loadedConfig = JSON.parse(localStorage.getItem('app.config'));
@@ -100,7 +100,7 @@ export class AppContext {
 
       if (lang && 'pt-BR,en-USA'.indexOf(lang) != -1) {
         this.config.lang = lang;
-        this.localization.lang = lang;
+        this.i18n.lang = lang;
       } else {
         console.warn(`Valor inválido para linguagem: ${lang}`);
       }

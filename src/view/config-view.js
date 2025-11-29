@@ -52,7 +52,7 @@ export class ConfigView extends View {
       if (lang === 'pt-BR' || lang === 'en-USA') {
         // @note João, tá duplicado essa informação, tirar das config? ou achar um jeito de vincular?
         this.ctx.config.lang = lang;
-        this.ctx.localization.lang = lang;
+        this.ctx.i18n.lang = lang;
         this.ctx.saveConfig();
         // @note João, pra recarregar a própria tela de config foi feito esse 'hack' aonde é solicitado 
         // para trocar para essa mesma tela

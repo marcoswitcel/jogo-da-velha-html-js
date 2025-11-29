@@ -1,3 +1,4 @@
+import { translations } from './translations.js';
 import { dotAccessor } from './utils.js';
 
 /**
@@ -7,31 +8,6 @@ import { dotAccessor } from './utils.js';
  * Com esse grupo de captura ao invés de "(.*)" a regex para na primeira instância do caractere de finalização
  */
 const pattern = /\{i18n:([^}]+)\}/g;
-
-const localization = {
-  global: {
-    back_to_menu: { 'pt-BR': 'Voltar ao Menu', 'en-USA': 'Back to Menu' },
-    play_again: { 'pt-BR': 'Jogar Novamente', 'en-USA': 'Play Again' },
-    resume_match: { 'pt-BR': 'Retomar Partida', 'en-USA': 'Resume Match' },
-  },
-  page: {
-    menu: {
-      title: { 'pt-BR': 'Jogo da Velha', 'en-USA': 'Tic Tac Toe' },
-      player1: { 'pt-BR': 'Dois Jogadores', 'en-USA': 'Two player\'s' },
-      player2: { 'pt-BR': 'Jogador vs. AI', 'en-USA': 'Player vs. AI' },
-      configurations: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
-    },
-    in_game: {
-      player: { 'pt-BR': 'Jogador', 'en-USA': 'Player' },
-      deciding: { 'pt-BR': 'Decidindo...', 'en-USA': 'Deciding...' },
-    },
-    config: {
-      title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
-      description: { 'pt-BR': 'Configurações gerais do aplicativo', 'en-USA': 'General applications settings' },
-      version: { 'pt-BR': 'Versão', 'en-USA': 'Version' },
-    },
-  }
-};
 
 export class Localization {
   /**
@@ -58,7 +34,7 @@ export class Localization {
    */
   getTextLocale(propertyName, defaultValue = '') {
     const name = propertyName + '.' + this.lang;
-    const [ ok, value ] = dotAccessor(localization, name);
+    const [ ok, value ] = dotAccessor(translations, name);
 
     console.assert(ok, `propriedade: '${name}'`)
       
