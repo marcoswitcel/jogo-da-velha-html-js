@@ -1,4 +1,4 @@
-import { delayHandler, getById } from '../utils.js';
+import { delayHandler, getTemplateById } from '../utils.js';
 import { View } from './view.js';
 
 const DELAY_DISPATCH_CLOSE = 50;
@@ -25,7 +25,7 @@ export class ConfirmAlertView extends View {
   buttonDeclineDescription;
 
   constructor(ctx, title, descritption, confirmHandle, declineHandle, confirmDescription = 'Sim', declineDescription = 'Não') {
-    super('app-modal-confirm-alert', getById('app-modal-confirm-alert'), ctx);
+    super('app-modal-confirm-alert', getTemplateById('app-modal-confirm-alert'), ctx);
     this.title = title;
     this.descritption = descritption;
     this.confirmHandle = confirmHandle;

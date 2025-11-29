@@ -1,5 +1,6 @@
+import { AppContext } from '../app-context.js';
 import { TicTacToe } from '../tic-tac-toe.js';
-import { getById } from '../utils.js';
+import { getTemplateById } from '../utils.js';
 import { MenuView } from './menu-view.js';
 import { View } from './view.js';
 
@@ -26,8 +27,12 @@ export class InGameView extends View {
    */
   gridCellElements;
 
+  /**
+   * @param {AppContext} ctx 
+   * @param {1|2} playerMode
+   */
   constructor(ctx, playerMode) {
-    super('app-view-in-game', getById('app-view-in-game'), ctx, 'Partida em andamento');
+    super('app-view-in-game', getTemplateById('app-view-in-game'), ctx, ctx.i18n.getTextLocale('page.in_game.page_title'));
     this.playerMode = playerMode;
     this.ticTacToe = new TicTacToe();
     // elementos

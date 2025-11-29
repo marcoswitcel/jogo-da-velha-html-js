@@ -37,7 +37,13 @@ export class View {
     this.description = description;
   }
 
+  /**
+   * @returns {void}
+   */
   setup() {}
+  /**
+   * @returns {void}
+   */
   cleanup() {}
 
   /**

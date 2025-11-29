@@ -222,7 +222,7 @@ export class AppContext {
   }
 
   updateTitle() {
-    const defaultPageTitle = 'Jogo da Velha';
+    const defaultPageTitle = this.i18n.getTextLocale('global.page_title');
     const view = this.currentView;
     
     if (view.description) {

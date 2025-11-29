@@ -1,4 +1,5 @@
-import { getById } from '../utils.js';
+import { AppContext } from '../app-context.js';
+import { getTemplateById } from '../utils.js';
 import { version } from '../version.js';
 import { MenuView } from './menu-view.js';
 import { View } from './view.js';
@@ -14,8 +15,11 @@ export class ConfigView extends View {
    */
   langSelectElement;
 
+  /**
+   * @param {AppContext} ctx 
+   */
   constructor(ctx) {
-    super('app-view-config', getById('app-view-config'), ctx, 'Configurações');
+    super('app-view-config', getTemplateById('app-view-config'), ctx, ctx.i18n.getTextLocale('page.config.page_title'));
     // @ts-expect-error
     this.themeSelectElement = this.query('#theme-mode')[0];
     // @ts-expect-error

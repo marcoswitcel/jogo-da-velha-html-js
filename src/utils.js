@@ -1,5 +1,16 @@
 
 export const getById = (id) => document.getElementById(id);
+/**
+ * @param {string} id 
+ * @returns {HTMLTemplateElement}
+ */
+export const getTemplateById = (id) => {
+  const element = document.getElementById(id);
+  
+  console.assert(element instanceof HTMLTemplateElement, 'Deveria ser um template, avaliar...');
+  // @ts-expect-error
+  return element;
+}
 
 export const delayHandler = (handler, delayInMilliseconds) => setTimeout(handler, delayInMilliseconds)
 

@@ -1,11 +1,11 @@
-import { getById } from '../utils.js';
+import { getTemplateById } from '../utils.js';
 import { View } from './view.js';
 import { InGameView } from './in-game-view.js';
 import { ConfigView } from './config-view.js';
 
 export class MenuView extends View {
   constructor(ctx) {
-    super('app-view-menu', getById('app-view-menu'), ctx);
+    super('app-view-menu', getTemplateById('app-view-menu'), ctx);
   }
 
   setup() {
