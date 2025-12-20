@@ -83,15 +83,7 @@ export class InGameView extends View {
       if (this.ctx.isModalOpen()) {
         this.ctx.hiddeModal();
       } else {
-        this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
-          confirmDescription: 'Retomar Partida',
-          // @note João, usar a propriedade 'global.back_to_menu' aqui, assim que tiver uma pros outros textos
-          declineDescription: 'Voltar ao Menu',
-          confirm: () => {},
-          decline: () => {
-            this.ctx.queueToChange(new MenuView(this.ctx));
-          },
-        });
+        this.openPausedModal();
       }
     }
   }
@@ -306,16 +298,23 @@ export class InGameView extends View {
 
   onBackPressed() {
     if (!this.ctx.isModalOpen()) {
-      this.ctx.confirm(`Pausado`, 'O que deseja fazer?', {
-        confirmDescription: 'Retomar Partida',
-        declineDescription: 'Voltar ao Menu',
-        confirm: () => {},
-        decline: () => {
-          this.ctx.queueToChange(new MenuView(this.ctx));
-        },
-      });
+     this.openPausedModal();
     }
     
     return true;
+  }
+
+  /**
+   * @private
+   */
+  openPausedModal() {
+    this.ctx.confirm(this.ctx.i18n.getTextLocale('page.in_game.paused'), this.ctx.i18n.getTextLocale('page.in_game.what_do_you_want_to_do'), {
+      confirmDescription: this.ctx.i18n.getTextLocale('page.in_game.resume_play'),
+      declineDescription: this.ctx.i18n.getTextLocale('global.back_to_menu'),
+      confirm: () => {},
+      decline: () => {
+        this.ctx.queueToChange(new MenuView(this.ctx));
+      },
+    });
   }
 }

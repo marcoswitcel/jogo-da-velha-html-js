@@ -17,6 +17,9 @@ export const translations = {
       page_title: { 'pt-BR': 'Partida em andamento', 'en-USA': 'Match in Progress' },
       player: { 'pt-BR': 'Jogador', 'en-USA': 'Player' },
       deciding: { 'pt-BR': 'Decidindo...', 'en-USA': 'Deciding...' },
+      paused: { 'pt-BR': 'Pausado', 'en-USA': 'Paused' },
+      resume_play: { 'pt-BR': 'Retomar Partida', 'en-USA': 'Resume Play' },
+      what_do_you_want_to_do: { 'pt-BR': 'O que deseja fazer?', 'en-USA': 'What do you want to do?' },
     },
     config: {
       page_title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },
