@@ -213,7 +213,11 @@ export class AppContext {
    * @param {string} description 
    * @param {{ confirm: () => void, decline: () => void, confirmDescription?: string, declineDescription?: string }} param2 
    */
-  confirm(title, description, { confirm, decline, confirmDescription = 'Jogar Novamente', declineDescription = 'Voltar ao Menu' }) {
+  confirm(title, description, {
+    confirm, decline,
+    confirmDescription = this.i18n.getTextLocale('global.play_again'),
+    declineDescription = this.i18n.getTextLocale('global.back_to_menu'),
+  }) {
     this.queueToChange(new ConfirmAlertView(this, title, description, confirm, decline, confirmDescription, declineDescription ), 'modal');
   }
 

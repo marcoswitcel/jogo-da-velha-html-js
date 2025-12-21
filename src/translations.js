@@ -20,6 +20,9 @@ export const translations = {
       paused: { 'pt-BR': 'Pausado', 'en-USA': 'Paused' },
       resume_play: { 'pt-BR': 'Retomar Partida', 'en-USA': 'Resume Play' },
       what_do_you_want_to_do: { 'pt-BR': 'O que deseja fazer?', 'en-USA': 'What do you want to do?' },
+      do_you_want_to_play_again: { 'pt-BR': 'Deseja jogar novamente?', 'en-USA': 'Do you want to play again?' },
+      the_game_ended_in_a_draw: { 'pt-BR': 'O jogo terminou em empate', 'en-USA': 'The game ended in a draw' },
+      victory_of_player: { 'pt-BR': 'Vitória do jogador: ', 'en-USA': 'Victory of player: ' },
     },
     config: {
       page_title: { 'pt-BR': 'Configurações', 'en-USA': 'Configurations' },

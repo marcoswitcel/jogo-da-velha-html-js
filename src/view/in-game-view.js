@@ -269,7 +269,10 @@ export class InGameView extends View {
     this.clearPlayerDisplay();
 
     if (this.ticTacToe.checkForWin()) {
-      this.ctx.confirm(`Vitória do jogador: ${this.ctx.player}`, 'Deseja jogar novamente?', {
+      this.ctx.confirm(
+        // @note João, talvez ajustar essa frase para incluir o nome do jogador no meio ao invés de no final, como por exemplo: "O jogador 'x' ganhou"
+        this.ctx.i18n.getTextLocale('page.in_game.victory_of_player') + this.ctx.player,
+        this.ctx.i18n.getTextLocale('page.in_game.do_you_want_to_play_again'), {
         confirm: () => {
           this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
         },
@@ -278,7 +281,9 @@ export class InGameView extends View {
         },
       });
     } else if (this.ticTacToe.checkForATie()) {
-      this.ctx.confirm('O jogo terminou em empate', 'Deseja jogar novamente?', {
+      this.ctx.confirm(
+        this.ctx.i18n.getTextLocale('page.in_game.the_game_ended_in_a_draw'),
+        this.ctx.i18n.getTextLocale('page.in_game.do_you_want_to_play_again'), {
         confirm: () => {
           this.ctx.queueToChange(new InGameView(this.ctx, this.playerMode));
         },
