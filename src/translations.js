@@ -5,6 +5,8 @@ export const translations = {
     back_to_menu: { 'pt-BR': 'Voltar ao Menu', 'en-USA': 'Back to Menu' },
     play_again: { 'pt-BR': 'Jogar Novamente', 'en-USA': 'Play Again' },
     resume_match: { 'pt-BR': 'Retomar Partida', 'en-USA': 'Resume Match' },
+    yes: { 'pt-BR': 'Sim', 'en-USA': 'Yes' },
+    no: { 'pt-BR': 'Não', 'en-USA': 'No' },
   },
   page: {
     menu: {

@@ -24,7 +24,10 @@ export class ConfirmAlertView extends View {
   buttonConfirmDescription;
   buttonDeclineDescription;
 
-  constructor(ctx, title, descritption, confirmHandle, declineHandle, confirmDescription = 'Sim', declineDescription = 'Não') {
+  constructor(ctx, title, descritption, confirmHandle, declineHandle,
+    confirmDescription =  ctx.i18n.getTextLocale('global.yes'),
+    declineDescription =  ctx.i18n.getTextLocale('global.no'),
+  ) {
     super('app-modal-confirm-alert', getTemplateById('app-modal-confirm-alert'), ctx);
     this.title = title;
     this.descritption = descritption;
